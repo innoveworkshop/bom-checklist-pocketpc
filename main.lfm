@@ -1,0 +1,25 @@
+object MainForm: TMainForm
+  Left = 340
+  Height = 419
+  Top = 268
+  Width = 515
+  Caption = 'BOM Checklist'
+  Menu = mnuMain
+  LCLVersion = '1.6.4.0'
+  object mnuMain: TMainMenu
+    left = 288
+    top = 128
+    object MenuItem1: TMenuItem
+      Caption = 'File'
+      OnClick = MenuItem1Click
+      object mnuLoadBOM: TMenuItem
+        Caption = 'L&oad BOM File'
+        OnClick = mnuLoadBOMClick
+      end
+      object mnuExit: TMenuItem
+        Caption = 'E&xit'
+        OnClick = mnuExitClick
+      end
+    end
+  end
+end

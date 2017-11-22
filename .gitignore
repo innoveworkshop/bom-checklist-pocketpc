@@ -1,0 +1,12 @@
+# Generated files
+*.o
+*.ppu
+*.bak
+*.tpu
+*.$$$
+*.exe
+*.lps
+backup/
+
+# Misc.
+.DS_Store
