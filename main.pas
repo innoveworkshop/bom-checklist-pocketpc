@@ -5,20 +5,26 @@ unit main;
 interface
 
 uses
-  Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, Menus;
+  Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, Menus,
+  ComCtrls, Printers, StdCtrls;//, POSPrinter;
 
 type
 
   { TMainForm }
 
   TMainForm = class(TForm)
+    MenuItem2: TMenuItem;
+    mnuSetupPrinter: TMenuItem;
     mnuExit: TMenuItem;
     mnuLoadBOM: TMenuItem;
     mnuMain: TMainMenu;
     MenuItem1: TMenuItem;
+    statusBar: TStatusBar;
+    procedure FormCreate(Sender: TObject);
     procedure MenuItem1Click(Sender: TObject);
     procedure mnuExitClick(Sender: TObject);
     procedure mnuLoadBOMClick(Sender: TObject);
+    procedure mnuSetupPrinterClick(Sender: TObject);
   private
     { private declarations }
   public
@@ -39,6 +45,25 @@ begin
 
 end;
 
+procedure TMainForm.FormCreate(Sender: TObject);
+begin
+  Printer.SetPrinter('POS58');
+  Printer.Title := 'Oiieee';
+  Printer.RawMode := true;
+
+  try
+    Printer.BeginDoc;
+    Printer.Write(#27 + '@');
+    Printer.Write('Oieeee' + #10);
+    Printer.Write('Panda ama Bear' + #10);
+    //Printer.Write(#10 + 'a' + #01);
+    Printer.Write(#29 + 'k' + #04 + '98765432' + #00);
+    Printer.Write(#27 + 'd' + #01);
+  finally
+    Printer.EndDoc;
+  end;
+end;
+
 procedure TMainForm.mnuExitClick(Sender: TObject);
 begin
   Close;
@@ -47,6 +72,11 @@ end;
 procedure TMainForm.mnuLoadBOMClick(Sender: TObject);
 begin
   { TODO: Load the BOM file. }
+end;
+
+procedure TMainForm.mnuSetupPrinterClick(Sender: TObject);
+begin
+  { TODO: Open the printer setup form. }
 end;
 
 end.

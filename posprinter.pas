@@ -1,4 +1,4 @@
-unit BMP;
+unit POSPrinter;
 
 interface
 type
