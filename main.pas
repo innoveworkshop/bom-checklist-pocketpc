@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, Menus,
-  ComCtrls, Printers, StdCtrls;//, POSPrinter;
+  ComCtrls, Printers, StdCtrls, POSPrinter;
 
 type
 
@@ -47,20 +47,19 @@ end;
 
 procedure TMainForm.FormCreate(Sender: TObject);
 begin
-  Printer.SetPrinter('POS58');
-  Printer.Title := 'Oiieee';
-  Printer.RawMode := true;
+  SetupPrinter('POS58', 58, 42);
 
   try
-    Printer.BeginDoc;
-    Printer.Write(#27 + '@');
-    Printer.Write('Oieeee' + #10);
-    Printer.Write('Panda ama Bear' + #10);
-    //Printer.Write(#10 + 'a' + #01);
-    Printer.Write(#29 + 'k' + #04 + '98765432' + #00);
-    Printer.Write(#27 + 'd' + #01);
+    BeginPrint('Oiieeeee');
+
+    PrinterJustify(JUSTIFY_CENTER);
+    PrintLine('Oieeeeeee');
+    PrintLine('Panda ama Bear');
+    PrinterJustify(JUSTIFY_CENTER);
+    PrintBarcode('987612', BARCODE_CODE39, true);
+    PrinterCut(CUT_PREPARE);
   finally
-    Printer.EndDoc;
+    EndPrint;
   end;
 end;
 

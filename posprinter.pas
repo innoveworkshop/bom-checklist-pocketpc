@@ -1,266 +1,127 @@
 unit POSPrinter;
 
+{ This is basically a nice wrapper for the ESC/POS protocol. }
+{ For more information you can check:                        }
+{ Specification Document: http://content.epson.de/fileadmin/content/files/RSD/downloads/escpos.pdf }
+{ Programming Guide: http://download.delfi.com/SupportDL/Epson/Manuals/TM-T88IV/Programming%20manual%20APG_1005_receipt.pdf }
+
 interface
+const
+  { Characters used by the ESC/POS protocol. }
+  ESC = #27;
+  GS  = #29;
+  LF  = #10;
+  NUL = #00;
+
+  { Barcode types. }
+  BARCODE_UPCA    = #00;
+  BARCODE_UPCE    = #01;
+  BARCODE_JAN13   = #02;
+  BARCODE_JAN8    = #03;
+  BARCODE_CODE39  = #04;
+  BARCODE_ITF     = #05;
+  BARCODE_CODABAR = #06;
+
+  { Justification types. }
+  JUSTIFY_LEFT   = #00;
+  JUSTIFY_CENTER = #01;
+  JUSTIFY_RIGHT  = #02;
+
+  { Cut types. }
+  CUT_PARTIAL = #66;
+  CUT_FULL    = #65;
+  CUT_PREPARE = #00;
+
 type
-    TBMP = record
-        header: record
-            Signature: string;
-            FileSize: LongWord;
-            Reserved: array [0..3] of byte;
-            DataOffset: LongWord;
-        end;
-        info: record
-            Size: LongWord;
-            Width: LongWord;
-            Height: LongWord;
-            Planes: LongWord;
-            ColorDepth: LongWord;
-            Compression: LongWord;
-            ImageSize: LongWord;
-            xPixelsPerM: LongWord;
-            yPixelsPerM: LongWord;
-            ColorsUsed: LongWord;
-            ColorsImportant: LongWord;
-        end;
-        { TODO: Include space for color table. }
-        image: array of array of boolean;
-    end;
+  TPOSPrinter = record
+    Name: String;
+    Width: Integer;
+    MaxCharLine: Integer;
+  end;
 
 var
-    Bitmap: TBMP;
+  POS: TPOSPrinter;
 
-procedure PrintHeaders;
-procedure PrintImage;
-procedure OpenBitmapFile(bmp_file: string);
-procedure CloseBitmapFile;
+procedure SetupPrinter(name: String; width: Integer; max_char: Integer);
+procedure BeginPrint(title: String);
+procedure EndPrint;
+
+procedure PrinterFeed(num: Integer);
+procedure PrinterCut(ctype: Char);
+procedure PrinterJustify(jtype: Char);
+
+procedure PrintLine(line: String);
+procedure PrintBarcode(number: String; btype: Char; print_num: Boolean);
 
 implementation
 uses
-    SysUtils, StrUtils, Math, BitOp;
-var
-    BMPFile: file;
+  Printers;
 
-{ Converts a byte array to integer. }
-function ByteArrToInt(data: array of byte; length: integer): LongWord;
+{ Sets the printer stuff. }
+procedure SetupPrinter(name: String; width: Integer; max_char: Integer);
 begin
-    if length = 2 then
-        ByteArrToInt := LongWord((data[1] shl 8) or data[0])
-    else if length = 4 then
-        ByteArrToInt := LongWord((data[3] shl 24) or (data[2] shl 16) or (data[1] shl 8) or data[0])
-    else
-        WriteLn('ByteArrToInt: Unsupported array length');
+  POS.Name := name;
+  POS.Width := width;
+  POS.MaxCharLine := max_char;
+
+  Printer.SetPrinter(name);
+  Printer.RawMode := true;
 end;
 
-procedure PrintHeaders;
+{ Begins the printing process. }
+procedure BeginPrint(title: String);
 begin
-    WriteLn('Header');
-    WriteLn('  Signature:   ' + Bitmap.header.Signature);
-    WriteLn('  File Size:   ' + IntToStr(Bitmap.header.FileSize));
-    WriteLn('  Reserved:    ' + IntToHex(Bitmap.header.Reserved[0], 2) + ' ' + IntToHex(Bitmap.header.Reserved[1], 2) + ' ' + IntToHex(Bitmap.header.Reserved[2], 2) + ' ' + IntToHex(Bitmap.header.Reserved[3], 2));
-    WriteLn('  Data Offset: ' + IntToStr(Bitmap.header.DataOffset));
-
-    WriteLn('Info Header');
-    WriteLn('  Size:             ' + IntToStr(Bitmap.info.Size));
-    WriteLn('  Width:            ' + IntToStr(Bitmap.info.Width) + ' (' + IntToStr(ceil(Bitmap.info.Width / 32)) + ' chunks)');
-    WriteLn('  Height:           ' + IntToStr(Bitmap.info.Height));
-    WriteLn('  Planes:           ' + IntToStr(Bitmap.info.Planes));
-    WriteLn('  Color Depth:      ' + IntToStr(Bitmap.info.ColorDepth));
-    WriteLn('  Compression:      ' + IntToStr(Bitmap.info.Compression));
-    WriteLn('  Image Size:       ' + IntToStr(Bitmap.info.ImageSize));
-    WriteLn('  xPixelsPerM:      ' + IntToStr(Bitmap.info.xPixelsPerM));
-    WriteLn('  yPixelsPerM:      ' + IntToStr(Bitmap.info.yPixelsPerM));
-    WriteLn('  Colors Used:      ' + IntToStr(Bitmap.info.ColorsUsed));
-    WriteLn('  Colors Important: ' + IntToStr(Bitmap.info.ColorsImportant));
+  Printer.Title := title;
+  Printer.BeginDoc;
+  Printer.Write(ESC + '@');  { Resets the printer formatting. }
 end;
 
-{ Parse the bitmap file headers. }
-procedure ParseHeaders;
-var
-    data: array [0..3] of byte;
+{ Ends the printing process. }
+procedure EndPrint;
 begin
-    { Header }
-    BlockRead(BMPFile, data, 2);
-    Bitmap.header.Signature := char(data[0]) + char(data[1]);
-
-    BlockRead(BMPFile, data, 4);
-    Bitmap.header.FileSize := ByteArrToInt(data, 4);
-
-    BlockRead(BMPFile, data, 4);
-    Bitmap.header.Reserved := data;
-
-    BlockRead(BMPFile, data, 4);
-    Bitmap.header.DataOffset := ByteArrToInt(data, 4);
-
-    { Info Header }
-    BlockRead(BMPFile, data, 4);
-    Bitmap.info.Size := ByteArrToInt(data, 4);
-
-    BlockRead(BMPFile, data, 4);
-    Bitmap.info.Width := ByteArrToInt(data, 4);
-
-    BlockRead(BMPFile, data, 4);
-    Bitmap.info.Height := ByteArrToInt(data, 4);
-
-    BlockRead(BMPFile, data, 2);
-    Bitmap.info.Planes := ByteArrToInt(data, 2);
-
-    BlockRead(BMPFile, data, 2);
-    Bitmap.info.ColorDepth := ByteArrToInt(data, 2);
-
-    BlockRead(BMPFile, data, 4);
-    Bitmap.info.Compression := ByteArrToInt(data, 4);
-
-    BlockRead(BMPFile, data, 4);
-    Bitmap.info.ImageSize := ByteArrToInt(data, 4);
-
-    BlockRead(BMPFile, data, 4);
-    Bitmap.info.xPixelsPerM := ByteArrToInt(data, 4);
-
-    BlockRead(BMPFile, data, 4);
-    Bitmap.info.yPixelsPerM := ByteArrToInt(data, 4);
-
-    BlockRead(BMPFile, data, 4);
-    Bitmap.info.ColorsUsed := ByteArrToInt(data, 4);
-
-    BlockRead(BMPFile, data, 4);
-    Bitmap.info.ColorsImportant := ByteArrToInt(data, 4);
+  Printer.EndDoc;
 end;
 
-procedure ReadImage;
-var
-    scanlineb: array [0..3] of byte;
-    scanline: LongWord;
-    line, col: integer;
-    height: integer;
-    chunk, chunks: integer;
+{ Line feeds. }
+procedure PrinterFeed(num: Integer);
 begin
-    { Set the number of rows and seek the file to the image data. }
-    SetLength(Bitmap.image, Bitmap.info.Height);
-    Seek(BMPFile, Bitmap.header.DataOffset);
-
-    { Prepare some dimensions. }
-    height := Bitmap.info.Height - 1;
-    chunks := ceil(Bitmap.info.Width / 32);
-
-    { Reading the image data. }
-    for line := 0 to height do
-    begin
-        { Set the size of each row. }
-        SetLength(Bitmap.image[height - line], Bitmap.info.Width);
-
-        for chunk := 0 to chunks - 1 do
-        begin
-            { Read a line (32 bits). }
-            BlockRead(BMPFile, scanlineb, 4);
-
-            { Reverse the bits since they are LSB-first. }
-            scanlineb[0] := ReverseBits(scanlineb[0]);
-            scanlineb[1] := ReverseBits(scanlineb[1]);
-            scanlineb[2] := ReverseBits(scanlineb[2]);
-            scanlineb[3] := ReverseBits(scanlineb[3]);
-
-            { Convert the bytes to a integer of pixels. }
-            scanline := ByteArrToInt(scanlineb, 4);
-
-            for col := 0 to 31 do
-            begin
-                { Store the pixel. }
-                Bitmap.image[height - line][col + (32 * chunk)] := GetBit(scanline, col);
-
-                if (col + (32 * chunk)) = Bitmap.info.Width - 1 then
-                    Break;
-            end;
-        end;
-    end;
+  if num > 0 then
+     Printer.Write(ESC + 'd' + chr(num))
+  else if num < 0 then
+     Printer.Write(ESC + 'v' + chr(num + (num * 2)));
 end;
 
-procedure PrintImage;
-var
-    line, col: integer;
+{ Cuts the paper. }
+procedure PrinterCut(ctype: Char);
 begin
-    { Print the top frame. }
-    Write(#201);
-    for col := 0 to Bitmap.info.Width - 1 do
-    begin
-        Write(#205);
-    end;
-    WriteLn(#187);
-
-    { Print the actual image. }
-    for line := 0 to Bitmap.info.Height - 1 do
-    begin
-        Write(#186);
-        for col := 0 to Bitmap.info.Width - 1 do
-        begin
-            if Bitmap.image[line][col] then
-                Write(' ')
-            else
-                Write(#254)
-        end;
-
-        WriteLn(#186);
-    end;
-
-    { Print the bottom frame. }
-    Write(#200);
-    for col := 0 to Bitmap.info.Width - 1 do
-    begin
-        Write(#205);
-    end;
-    WriteLn(#188);
+  if ctype = CUT_PREPARE then
+     PrinterFeed(3)
+  else
+     Printer.Write(ESC + 'V' + ctype);
 end;
 
-{ Checks if the image is valid. }
-procedure ValidateHeader;
-var
-    fail: boolean;
+{ Change the print justification. }
+procedure PrinterJustify(jtype: Char);
 begin
-    fail := False;
-
-    if Bitmap.info.Planes > 1 then
-    begin
-        WriteLn('ERROR: Bitmap file has more than one plane (' + IntToStr(Bitmap.info.Planes) + ').');
-        fail := True;
-    end;
-
-    if Bitmap.info.ColorDepth > 1 then
-    begin
-        WriteLn('ERROR: Bitmap file is not true monochrome (Color depth = ' + IntToStr(Bitmap.info.ColorDepth) + ' bits).');
-        fail := True;
-    end;
-
-    if Bitmap.info.Compression > 0 then
-    begin
-        WriteLn('ERROR: Bitmap file has compression (Compression = ' + IntToStr(Bitmap.info.Compression) + ').');
-        fail := True;
-    end;
-
-    if fail then
-    begin
-        WriteLn;
-        WriteLn('The bitmap files must be saved as monochrome (1-bit color depth) and have no compression applied. The simplest way to achieve this is to use MS Paint, go to File->Save As... and select "Monochrome Bitmap"');
-
-        Halt;
-    end;
+  Printer.Write(ESC + 'a' + jtype);
 end;
 
-{ Opens the bitmap file and reads the headers. }
-procedure OpenBitmapFile(bmp_file: string);
+{ Prints a standard text line. }
+procedure PrintLine(line: String);
 begin
-    { Open the file }
-    Assign(BMPFile, bmp_file);
-    Reset(BMPFile, 1);
-
-    { Parse the headers, validate and read the image. }
-    ParseHeaders;
-    ValidateHeader;
-    ReadImage;
+  Printer.Write(line + LF);
 end;
 
-{ Close the bitmap file. }
-procedure CloseBitmapFile;
+{ Prints a barcode. }
+procedure PrintBarcode(number: String; btype: Char; print_num: Boolean);
 begin
-    Close(BMPFile);
+  Printer.Write(GS + 'k' + btype + number + NUL);
+
+  { Print the number below the barcode. }
+  if print_num then
+  begin
+     PrintLine(number);
+  end;
 end;
 
 end.
