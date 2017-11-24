@@ -50,13 +50,8 @@ begin
   SetupPrinter('POS58', 58, 42);
 
   try
-    BeginPrint('Oiieeeee');
-
-    PrinterJustify(JUSTIFY_CENTER);
-    PrintLine('Oieeeeeee');
-    PrintLine('Panda ama Bear');
-    PrinterJustify(JUSTIFY_CENTER);
-    PrintBarcode('987612', BARCODE_CODE39, true);
+    BeginPrint('Test Page');
+    PrintTestPage;
     PrinterCut(CUT_PREPARE);
   finally
     EndPrint;

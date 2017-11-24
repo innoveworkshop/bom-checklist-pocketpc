@@ -32,6 +32,11 @@ const
   CUT_FULL    = #65;
   CUT_PREPARE = #00;
 
+  { Underline types. }
+  UNDERLINE_NOTHING = #00;
+  UNDERLINE_LIGHT   = #01;
+  UNDERLINE_HEAVY   = #02;
+
 type
   TPOSPrinter = record
     Name: String;
@@ -50,12 +55,17 @@ procedure PrinterFeed(num: Integer);
 procedure PrinterCut(ctype: Char);
 procedure PrinterJustify(jtype: Char);
 
+procedure PrinterUnderline(utype: Char);
+procedure PrinterBold(enable: Boolean);
+
 procedure PrintLine(line: String);
 procedure PrintBarcode(number: String; btype: Char; print_num: Boolean);
 
+procedure PrintTestPage;
+
 implementation
 uses
-  Printers;
+  Printers, SysUtils;
 
 { Sets the printer stuff. }
 procedure SetupPrinter(name: String; width: Integer; max_char: Integer);
@@ -106,6 +116,20 @@ begin
   Printer.Write(ESC + 'a' + jtype);
 end;
 
+{ Sets the underline style font. }
+procedure PrinterUnderline(utype: Char);
+begin
+  Printer.Write(ESC + '-' + utype);
+end;
+
+procedure PrinterBold(enable: Boolean);
+begin
+  if enable then
+     Printer.Write(ESC + 'E' + #01)
+  else
+     Printer.Write(ESC + 'E' + #00);
+end;
+
 { Prints a standard text line. }
 procedure PrintLine(line: String);
 begin
@@ -121,6 +145,61 @@ begin
   if print_num then
   begin
      PrintLine(number);
+  end;
+end;
+
+procedure PrintTestPage;
+var
+  idx: Integer;
+begin
+  PrinterJustify(JUSTIFY_CENTER);
+  PrintLine('ESC/POS Printer Test Page');
+  PrinterFeed(1);
+  PrintLine('Printer Data');
+  PrinterJustify(JUSTIFY_LEFT);
+  PrintLine('Name: ' + POS.Name);
+  PrintLine('Paper Width: ' + IntToStr(POS.Width));
+  PrintLine('Max Char. per Line: ' + IntToStr(POS.MaxCharLine));
+  PrinterFeed(1);
+  PrintLine('Hello world!');
+  PrintLine('Forward feed 3');
+  PrinterFeed(3);
+  PrintLine('Reverse feed 3');
+  PrinterFeed(-3);
+  PrintLine('No Underline');
+  PrinterUnderline(UNDERLINE_LIGHT);
+  PrintLine('Light Underline');
+  PrinterUnderline(UNDERLINE_HEAVY);
+  PrintLine('Heavy Underline');
+  PrinterUnderline(UNDERLINE_NOTHING);
+  PrintLine('No emphasis');
+  PrinterBold(true);
+  PrintLine('With emphasis');
+  PrinterBold(false);
+  { TODO: Fonts here. }
+  PrinterFeed(1);
+  PrinterJustify(JUSTIFY_LEFT);
+  PrintLine('Left');
+  PrinterJustify(JUSTIFY_CENTER);
+  PrintLine('Center');
+  PrinterJustify(JUSTIFY_RIGHT);
+  PrintLine('Right');
+  PrinterJustify(JUSTIFY_CENTER);
+
+  { Barcodes }
+  for idx := 0 to 6 do
+  begin
+    PrintLine('Barcode ' + IntToStr(idx));
+    PrintBarcode('987612', chr(idx), true);
+  end;
+
+  PrinterFeed(2);
+  PrintLine('Character Set');
+  PrinterJustify(JUSTIFY_LEFT);
+
+  for idx := 33 to 255 do
+  begin
+    PrintLine(IntToStr(idx) + ' ' + chr(idx));
   end;
 end;
 
