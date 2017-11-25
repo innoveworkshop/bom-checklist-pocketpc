@@ -51,7 +51,7 @@ begin
 
   try
     BeginPrint('Test Page');
-    PrintTestPage;
+    PrintTestPage(false);
     PrinterCut(CUT_PREPARE);
   finally
     EndPrint;

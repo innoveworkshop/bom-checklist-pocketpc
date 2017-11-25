@@ -1,14 +1,14 @@
 object MainForm: TMainForm
-  Left = 478
+  Left = 303
   Height = 419
-  Top = 209
+  Top = 154
   Width = 515
   Caption = 'BOM Checklist'
   ClientHeight = 399
   ClientWidth = 515
   Menu = mnuMain
   OnCreate = FormCreate
-  LCLVersion = '1.6.4.0'
+  LCLVersion = '1.6.0.4'
   object statusBar: TStatusBar
     Left = 0
     Height = 23

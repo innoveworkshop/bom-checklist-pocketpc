@@ -61,7 +61,7 @@ procedure PrinterBold(enable: Boolean);
 procedure PrintLine(line: String);
 procedure PrintBarcode(number: String; btype: Char; print_num: Boolean);
 
-procedure PrintTestPage;
+procedure PrintTestPage(printcs: Boolean);
 
 implementation
 uses
@@ -148,7 +148,7 @@ begin
   end;
 end;
 
-procedure PrintTestPage;
+procedure PrintTestPage(printcs: Boolean);
 var
   idx: Integer;
 begin
@@ -193,13 +193,16 @@ begin
     PrintBarcode('987612', chr(idx), true);
   end;
 
-  PrinterFeed(2);
-  PrintLine('Character Set');
-  PrinterJustify(JUSTIFY_LEFT);
-
-  for idx := 33 to 255 do
+  if printcs then
   begin
-    PrintLine(IntToStr(idx) + ' ' + chr(idx));
+    PrinterFeed(2);
+    PrintLine('Character Set');
+    PrinterJustify(JUSTIFY_LEFT);
+
+    for idx := 33 to 255 do
+    begin
+      PrintLine(IntToStr(idx) + ' ' + chr(idx));
+    end;
   end;
 end;
 
