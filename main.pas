@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, Menus,
-  ComCtrls, Printers, StdCtrls, ExtCtrls, POSPrinter, BOMParser;
+  ComCtrls, Printers, StdCtrls, ExtCtrls, POSPrinter, BOMParser, frmPrinterSetup;
 
 type
   { TTreeData }
@@ -26,6 +26,7 @@ type
     grpComponentDetail: TGroupBox;
     Label1: TLabel;
     Label2: TLabel;
+    dlgOpen: TOpenDialog;
     txtQuantity: TLabeledEdit;
     txtValue: TLabeledEdit;
     txtName: TLabeledEdit;
@@ -84,7 +85,8 @@ end;
 
 procedure TMainForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 begin
-  BOM.Destroy;
+  if Assigned(BOM) then
+     BOM.Destroy;
 end;
 
 procedure TMainForm.mnuExitClick(Sender: TObject);
@@ -94,12 +96,18 @@ end;
 
 procedure TMainForm.mnuLoadBOMClick(Sender: TObject);
 begin
-  { TODO: Load the BOM file. }
+  if dlgOpen.Execute then
+  begin
+    BOM := TBOMParser.Create(dlgOpen.FileName);
+    BOM.ParseFile;
+
+    PopulateComponentTree;
+  end;
 end;
 
 procedure TMainForm.mnuSetupPrinterClick(Sender: TObject);
 begin
-  { TODO: Open the printer setup form. }
+  PrinterSetup.Show;
 end;
 
 procedure TMainForm.treeComponentsSelectionChanged(Sender: TObject);

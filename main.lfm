@@ -230,4 +230,11 @@ object MainForm: TMainForm
       end
     end
   end
+  object dlgOpen: TOpenDialog
+    Title = 'Load BOM File'
+    Filter = 'Bill of Materials|*.csv|All files|*.*'
+    Options = [ofFileMustExist, ofEnableSizing, ofViewDetail, ofAutoPreview]
+    left = 360
+    top = 376
+  end
 end

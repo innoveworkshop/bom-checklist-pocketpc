@@ -36,7 +36,7 @@
         <PackageName Value="LCL"/>
       </Item2>
     </RequiredPackages>
-    <Units Count="3">
+    <Units Count="4">
       <Unit0>
         <Filename Value="BOM_Checklist.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -53,6 +53,14 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="BOMParser"/>
       </Unit2>
+      <Unit3>
+        <Filename Value="frmprintersetup.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmPrinterSetup"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="frmPrinterSetup"/>
+      </Unit3>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
