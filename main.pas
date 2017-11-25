@@ -6,23 +6,33 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, Menus,
-  ComCtrls, Printers, POSPrinter, BOMParser;
+  ComCtrls, Printers, StdCtrls, ExtCtrls, POSPrinter, BOMParser;
 
 type
 
   { TMainForm }
 
   TMainForm = class(TForm)
+    cmbCategory: TComboBox;
+    grpComponentTree: TGroupBox;
+    grpComponentDetail: TGroupBox;
+    Label1: TLabel;
+    Label2: TLabel;
+    txtQuantity: TLabeledEdit;
+    txtValue: TLabeledEdit;
+    txtName: TLabeledEdit;
+    lstRefDes: TListBox;
     MenuItem2: TMenuItem;
     mnuSetupPrinter: TMenuItem;
     mnuExit: TMenuItem;
     mnuLoadBOM: TMenuItem;
     mnuMain: TMainMenu;
     MenuItem1: TMenuItem;
+    Splitter1: TSplitter;
     statusBar: TStatusBar;
+    treeComponents: TTreeView;
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
-    procedure MenuItem1Click(Sender: TObject);
     procedure mnuExitClick(Sender: TObject);
     procedure mnuLoadBOMClick(Sender: TObject);
     procedure mnuSetupPrinterClick(Sender: TObject);
@@ -43,11 +53,6 @@ var
 {$R *.lfm}
 
 { TMainForm }
-
-procedure TMainForm.MenuItem1Click(Sender: TObject);
-begin
-
-end;
 
 procedure TMainForm.FormCreate(Sender: TObject);
 var

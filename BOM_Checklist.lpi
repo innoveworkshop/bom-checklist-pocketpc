@@ -51,7 +51,7 @@
       <Unit2>
         <Filename Value="simplecsv.pas"/>
         <IsPartOfProject Value="True"/>
-        <UnitName Value="SimpleCSV"/>
+        <UnitName Value="BOMParser"/>
       </Unit2>
     </Units>
   </ProjectOptions>

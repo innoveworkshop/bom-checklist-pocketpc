@@ -99,14 +99,6 @@ begin
       cols.StrictDelimiter := true;
       cols.DelimitedText := line;
 
-      WriteLn('Line ' + IntToStr(count) + ': ' + line);
-      for idx := 0 to cols.Count - 1 do
-      begin
-        WriteLn('Col ' + IntToStr(idx) + ': ' + cols.Strings[idx]);
-      end;
-
-      WriteLn('');
-
       { Create the component and populate the array. }
       Components[count].ID := StrToInt(cols.Strings[0]);
       Components[count].RefDes := cols.Strings[1];
