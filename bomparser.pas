@@ -27,6 +27,7 @@ type
       procedure GetNumLines(filepath: String);
     public
       Components: array of TComponent;
+      Categories: TStringList;
 
       constructor Create(filepath: String); overload;
       destructor Destroy; override;
@@ -53,14 +54,13 @@ begin
 
   num_lines := count;
   Close(f);
-
-  WriteLn('File has ' + IntToStr(count) + ' lines');
 end;
 
 { Constructor that will open the CSV file for parsing. }
 constructor TBOMParser.Create(filepath: String);
 begin
   GetNumLines(filepath);
+  Categories := TStringList.Create;
 
   Assign(CSVFile, filepath);
   Reset(CSVFile);
@@ -76,7 +76,7 @@ end;
 procedure TBOMParser.ParseFile(delimiter: Char = ',');
 var
   line: String;
-  count, idx: Integer;
+  count: Integer;
   at_header: Boolean;
   cols: TStringList;
 begin
@@ -95,7 +95,7 @@ begin
     begin
       { Splits the line into columns. }
       cols.Clear;
-      cols.Delimiter := ',';
+      cols.Delimiter := delimiter;
       cols.StrictDelimiter := true;
       cols.DelimitedText := line;
 
@@ -106,6 +106,10 @@ begin
       Components[count].Quantity := StrToInt(cols.Strings[3]);
       Components[count].Name := cols.Strings[4];
       Components[count].Category := cols.Strings[5];
+
+      { Populate the Categories array. }
+      if Categories.IndexOf(cols.Strings[5]) = -1 then
+         Categories.Add(cols.Strings[5]);
 
       count := count + 1;
     end;

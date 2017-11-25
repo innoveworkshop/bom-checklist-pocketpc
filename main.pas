@@ -9,6 +9,14 @@ uses
   ComCtrls, Printers, StdCtrls, ExtCtrls, POSPrinter, BOMParser;
 
 type
+  { TTreeData }
+  PTreeData = ^TTreeData;
+  TTreeData = class
+    private
+      FID: Integer;
+    published
+      property ID: Integer read FID write FID;
+  end;
 
   { TMainForm }
 
@@ -36,8 +44,9 @@ type
     procedure mnuExitClick(Sender: TObject);
     procedure mnuLoadBOMClick(Sender: TObject);
     procedure mnuSetupPrinterClick(Sender: TObject);
+    procedure treeComponentsSelectionChanged(Sender: TObject);
   private
-    { private declarations }
+    procedure PopulateComponentTree;
   public
     { public declarations }
   end;
@@ -55,16 +64,12 @@ var
 { TMainForm }
 
 procedure TMainForm.FormCreate(Sender: TObject);
-var
-  i: Integer;
 begin
   BOM := TBOMParser.Create('test.csv');
   BOM.ParseFile;
 
-  for i := 0 to Length(BOM.Components) - 1 do
-  begin
-    WriteLn('Component ' + IntToStr(i) + ' - RefDes: ' + BOM.Components[i].RefDes);
-  end;
+  PopulateComponentTree;
+
   {SetupPrinter('POS58', 58, 42);
 
   try
@@ -94,6 +99,42 @@ end;
 procedure TMainForm.mnuSetupPrinterClick(Sender: TObject);
 begin
   { TODO: Open the printer setup form. }
+end;
+
+procedure TMainForm.treeComponentsSelectionChanged(Sender: TObject);
+begin
+  if not treeComponents.Selected.HasChildren then
+  begin
+    WriteLn(IntToStr(TTreeData(treeComponents.Selected.Data).ID));
+  end;
+end;
+
+{ Populates the component TreeView. }
+procedure TMainForm.PopulateComponentTree;
+var
+  i, j: Integer;
+  node: TTreeNode;
+  data: TTreeData;
+begin
+  treeComponents.Items.Clear;
+
+  for i := 0 to BOM.Categories.Count - 1 do
+  begin
+    node := treeComponents.Items.Add(nil, BOM.Categories.Strings[i]);
+
+    for j := 0 to Length(BOM.Components) - 1 do
+    begin
+      if BOM.Components[j].Category = BOM.Categories.Strings[i] then
+      begin
+        data := TTreeData.Create;
+        data.ID := BOM.Components[j].ID;
+
+        treeComponents.Items.AddChildObject(node, BOM.Components[j].RefDes, data);
+      end;
+    end;
+
+    node.Expand(true);
+  end;
 end;
 
 end.
