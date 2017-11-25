@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, Menus,
-  ComCtrls, Printers, StdCtrls, POSPrinter;
+  ComCtrls, Printers, POSPrinter, BOMParser;
 
 type
 
@@ -20,6 +20,7 @@ type
     mnuMain: TMainMenu;
     MenuItem1: TMenuItem;
     statusBar: TStatusBar;
+    procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure MenuItem1Click(Sender: TObject);
     procedure mnuExitClick(Sender: TObject);
@@ -36,6 +37,9 @@ var
 
 implementation
 
+var
+  BOM: TBOMParser;
+
 {$R *.lfm}
 
 { TMainForm }
@@ -47,7 +51,9 @@ end;
 
 procedure TMainForm.FormCreate(Sender: TObject);
 begin
-  SetupPrinter('POS58', 58, 42);
+  BOM := TBOMParser.Create('test.csv');
+  BOM.ParseFile;
+  {SetupPrinter('POS58', 58, 42);
 
   try
     BeginPrint('Test Page');
@@ -55,7 +61,12 @@ begin
     PrinterCut(CUT_PREPARE);
   finally
     EndPrint;
-  end;
+  end;}
+end;
+
+procedure TMainForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
+begin
+  BOM.Destroy;
 end;
 
 procedure TMainForm.mnuExitClick(Sender: TObject);

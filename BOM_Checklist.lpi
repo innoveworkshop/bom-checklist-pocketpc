@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CONFIG>
   <ProjectOptions>
-    <Version Value="10"/>
+    <Version Value="9"/>
     <PathDelim Value="\"/>
     <General>
       <SessionStorage Value="InProjectDir"/>
@@ -36,7 +36,7 @@
         <PackageName Value="LCL"/>
       </Item2>
     </RequiredPackages>
-    <Units Count="2">
+    <Units Count="3">
       <Unit0>
         <Filename Value="BOM_Checklist.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -48,6 +48,11 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit1>
+      <Unit2>
+        <Filename Value="simplecsv.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="SimpleCSV"/>
+      </Unit2>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
