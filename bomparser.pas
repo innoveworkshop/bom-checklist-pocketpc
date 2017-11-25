@@ -10,20 +10,58 @@ uses
   Classes, SysUtils;
 
 type
+  TComponent = record
+    ID: Integer;
+    RefDes: String;
+    Value: String;
+    Quantity: Integer;
+    Name: String;
+    Category: String;
+  end;
+
   TBOMParser = class
     private
       CSVFile: TextFile;
+      num_lines: Integer;
+
+      procedure GetNumLines(filepath: String);
     public
+      Components: array of TComponent;
+
       constructor Create(filepath: String); overload;
       destructor Destroy; override;
-      procedure ParseFile(ignore_header: Boolean = true; delimiter: Char = ',');
+      procedure ParseFile(delimiter: Char = ',');
   end;
 
 implementation
 
+{ Function to get the number of lines in the file. }
+procedure TBOMParser.GetNumLines(filepath: String);
+var
+  f: TextFile;
+  count: Integer;
+begin
+  Assign(f, filepath);
+  Reset(f);
+  count := 0;
+
+  while not EOF(f) do
+  begin
+    ReadLn(f);
+    count := count + 1;
+  end;
+
+  num_lines := count;
+  Close(f);
+
+  WriteLn('File has ' + IntToStr(count) + ' lines');
+end;
+
 { Constructor that will open the CSV file for parsing. }
 constructor TBOMParser.Create(filepath: String);
 begin
+  GetNumLines(filepath);
+
   Assign(CSVFile, filepath);
   Reset(CSVFile);
 end;
@@ -34,20 +72,20 @@ begin
   Close(CSVFile);
 end;
 
-procedure TBOMParser.ParseFile(ignore_header: Boolean = true; delimiter: Char = ',');
+{ Parses the CSV file and splits the columns in each line. }
+procedure TBOMParser.ParseFile(delimiter: Char = ',');
 var
   line: String;
-  i, idx: Integer;
+  count, idx: Integer;
   at_header: Boolean;
   cols: TStringList;
 begin
-  i := 0;
+  count := 0;
   cols := TStringList.Create;
 
-  if ignore_header then
-     at_header := true
-  else
-     at_header := false;
+  { Ignore the header. }
+  at_header := true;
+  SetLength(Components, num_lines - 1);
 
   while not EOF(CSVFile) do
   begin
@@ -61,17 +99,26 @@ begin
       cols.StrictDelimiter := true;
       cols.DelimitedText := line;
 
-      WriteLn('Line ' + IntToStr(i) + ': ' + line);
+      WriteLn('Line ' + IntToStr(count) + ': ' + line);
       for idx := 0 to cols.Count - 1 do
       begin
         WriteLn('Col ' + IntToStr(idx) + ': ' + cols.Strings[idx]);
       end;
 
       WriteLn('');
+
+      { Create the component and populate the array. }
+      Components[count].ID := StrToInt(cols.Strings[0]);
+      Components[count].RefDes := cols.Strings[1];
+      Components[count].Value := cols.Strings[2];
+      Components[count].Quantity := StrToInt(cols.Strings[3]);
+      Components[count].Name := cols.Strings[4];
+      Components[count].Category := cols.Strings[5];
+
+      count := count + 1;
     end;
 
     at_header := false;
-    i := i + 1;
   end;
 end;
 

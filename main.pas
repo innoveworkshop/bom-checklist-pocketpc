@@ -50,9 +50,16 @@ begin
 end;
 
 procedure TMainForm.FormCreate(Sender: TObject);
+var
+  i: Integer;
 begin
   BOM := TBOMParser.Create('test.csv');
   BOM.ParseFile;
+
+  for i := 0 to Length(BOM.Components) - 1 do
+  begin
+    WriteLn('Component ' + IntToStr(i) + ' - RefDes: ' + BOM.Components[i].RefDes);
+  end;
   {SetupPrinter('POS58', 58, 42);
 
   try
