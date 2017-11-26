@@ -30,6 +30,9 @@ var
 
 implementation
 
+uses
+  main;
+
 {$R *.lfm}
 
 { TfrmPrinterSetup }
@@ -48,6 +51,7 @@ end;
 
 procedure TfrmPrinterSetup.btSaveClick(Sender: TObject);
 begin
+  MainForm.SetPrinter(grpPrinters.Items.Strings[grpPrinters.ItemIndex], StrToInt(txtPaperWidth.Text), StrToInt(txtMaxCharLine.Text));
   Close;
 end;
 

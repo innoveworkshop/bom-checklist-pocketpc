@@ -50,7 +50,7 @@ type
     procedure PopulateComponentTree;
     procedure ShowDetail(id: Integer);
   public
-    { public declarations }
+    procedure SetPrinter(pname: String; pwidth: Integer; maxline: Integer);
   end;
 
 var
@@ -65,22 +65,26 @@ var
 
 { TMainForm }
 
-procedure TMainForm.FormCreate(Sender: TObject);
+procedure TMainForm.SetPrinter(pname: String; pwidth: Integer; maxline: Integer);
 begin
-  BOM := TBOMParser.Create('test.csv');
-  BOM.ParseFile;
+  SetupPrinter(pname, pwidth, maxline);
 
-  PopulateComponentTree;
-
-  {SetupPrinter('POS58', 58, 42);
-
-  try
+  {try
     BeginPrint('Test Page');
     PrintTestPage(false);
     PrinterCut(CUT_PREPARE);
   finally
     EndPrint;
   end;}
+end;
+
+procedure TMainForm.FormCreate(Sender: TObject);
+begin
+  BOM := TBOMParser.Create('test.csv');
+  BOM.ParseFile;
+
+  PopulateComponentTree;
+  SetupPrinter('POS58', 58, 42);
 end;
 
 procedure TMainForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
@@ -107,7 +111,7 @@ end;
 
 procedure TMainForm.mnuSetupPrinterClick(Sender: TObject);
 begin
-  PrinterSetup.Show;
+  PrinterSetup.ShowModal;
 end;
 
 procedure TMainForm.treeComponentsSelectionChanged(Sender: TObject);
