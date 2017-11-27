@@ -6,7 +6,8 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, Menus,
-  ComCtrls, Printers, StdCtrls, ExtCtrls, POSPrinter, BOMParser, frmPrinterSetup;
+  ComCtrls, Printers, StdCtrls, ExtCtrls, Grids, ValEdit, POSPrinter, BOMParser,
+  frmPrinterSetup;
 
 type
   { TTreeData }
@@ -22,11 +23,16 @@ type
 
   TMainForm = class(TForm)
     cmbCategory: TComboBox;
+    grpProjectInfo: TGroupBox;
     grpComponentTree: TGroupBox;
     grpComponentDetail: TGroupBox;
     Label1: TLabel;
     Label2: TLabel;
     dlgOpen: TOpenDialog;
+    MenuItem3: TMenuItem;
+    MenuItem4: TMenuItem;
+    mnuPrint: TMenuItem;
+    pnlRight: TPanel;
     txtQuantity: TLabeledEdit;
     txtValue: TLabeledEdit;
     txtName: TLabeledEdit;
@@ -40,10 +46,12 @@ type
     Splitter1: TSplitter;
     statusBar: TStatusBar;
     treeComponents: TTreeView;
+    vlsProjectInfo: TValueListEditor;
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure mnuExitClick(Sender: TObject);
     procedure mnuLoadBOMClick(Sender: TObject);
+    procedure mnuPrintClick(Sender: TObject);
     procedure mnuSetupPrinterClick(Sender: TObject);
     procedure treeComponentsSelectionChanged(Sender: TObject);
   private
@@ -68,6 +76,7 @@ var
 procedure TMainForm.SetPrinter(pname: String; pwidth: Integer; maxline: Integer);
 begin
   SetupPrinter(pname, pwidth, maxline);
+  statusBar.Panels.Items[0].Text := pname + ' set as the default printer';
 
   {try
     BeginPrint('Test Page');
@@ -107,6 +116,12 @@ begin
 
     PopulateComponentTree;
   end;
+end;
+
+procedure TMainForm.mnuPrintClick(Sender: TObject);
+begin
+  { TODO: Print the stuff. }
+  WriteLn(vlsProjectInfo.Strings.Strings[0]);
 end;
 
 procedure TMainForm.mnuSetupPrinterClick(Sender: TObject);
@@ -156,6 +171,7 @@ begin
   statusBar.Panels.Items[0].Text := 'BOM file loaded';
 end;
 
+{ Populate the detail view. }
 procedure TMainForm.ShowDetail(id: Integer);
 var
   component: TComponent;

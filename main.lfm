@@ -1,13 +1,13 @@
 object MainForm: TMainForm
   Left = 303
-  Height = 515
+  Height = 550
   Top = 154
-  Width = 463
+  Width = 628
   Caption = 'BOM Checklist'
-  ClientHeight = 495
-  ClientWidth = 463
-  Constraints.MinHeight = 515
-  Constraints.MinWidth = 460
+  ClientHeight = 530
+  ClientWidth = 628
+  Constraints.MinHeight = 550
+  Constraints.MinWidth = 515
   Menu = mnuMain
   OnClose = FormClose
   OnCreate = FormCreate
@@ -15,8 +15,8 @@ object MainForm: TMainForm
   object statusBar: TStatusBar
     Left = 0
     Height = 23
-    Top = 472
-    Width = 463
+    Top = 507
+    Width = 628
     Panels = <    
       item
         Width = 50
@@ -25,7 +25,7 @@ object MainForm: TMainForm
   end
   object grpComponentTree: TGroupBox
     Left = 3
-    Height = 469
+    Height = 504
     Top = 0
     Width = 261
     Align = alLeft
@@ -33,12 +33,12 @@ object MainForm: TMainForm
     BorderSpacing.Right = 3
     BorderSpacing.Bottom = 3
     Caption = 'Component List'
-    ClientHeight = 449
+    ClientHeight = 484
     ClientWidth = 257
     TabOrder = 1
     object treeComponents: TTreeView
       Left = 3
-      Height = 446
+      Height = 481
       Top = 0
       Width = 251
       Align = alClient
@@ -52,161 +52,240 @@ object MainForm: TMainForm
       Options = [tvoAutoItemHeight, tvoHideSelection, tvoKeepCollapsedNodes, tvoReadOnly, tvoShowButtons, tvoShowLines, tvoShowRoot, tvoToolTips, tvoThemedDraw]
     end
   end
-  object grpComponentDetail: TGroupBox
-    Left = 275
-    Height = 469
-    Top = 0
-    Width = 185
-    Align = alClient
-    BorderSpacing.Left = 3
-    BorderSpacing.Right = 3
-    BorderSpacing.Bottom = 3
-    Caption = 'Component Detail'
-    ClientHeight = 449
-    ClientWidth = 181
-    Enabled = False
-    TabOrder = 2
-    object txtQuantity: TLabeledEdit
-      AnchorSideLeft.Control = grpComponentDetail
-      AnchorSideTop.Control = grpComponentDetail
-      AnchorSideRight.Control = grpComponentDetail
-      AnchorSideRight.Side = asrBottom
-      AnchorSideBottom.Control = txtValue
-      Left = 7
-      Height = 23
-      Top = 18
-      Width = 167
-      Anchors = [akLeft, akRight, akBottom]
-      BorderSpacing.Left = 7
-      BorderSpacing.Right = 7
-      BorderSpacing.Bottom = 25
-      EditLabel.AnchorSideLeft.Control = txtQuantity
-      EditLabel.AnchorSideRight.Control = txtQuantity
-      EditLabel.AnchorSideRight.Side = asrBottom
-      EditLabel.AnchorSideBottom.Control = txtQuantity
-      EditLabel.Left = 7
-      EditLabel.Height = 15
-      EditLabel.Top = 0
-      EditLabel.Width = 167
-      EditLabel.Caption = 'Quantity'
-      EditLabel.ParentColor = False
-      TabOrder = 0
-    end
-    object txtValue: TLabeledEdit
-      AnchorSideLeft.Control = grpComponentDetail
-      AnchorSideTop.Control = txtQuantity
-      AnchorSideTop.Side = asrBottom
-      AnchorSideRight.Control = grpComponentDetail
-      AnchorSideRight.Side = asrBottom
-      AnchorSideBottom.Control = txtName
-      Left = 7
-      Height = 23
-      Top = 66
-      Width = 167
-      Anchors = [akLeft, akRight, akBottom]
-      BorderSpacing.Left = 7
-      BorderSpacing.Right = 7
-      BorderSpacing.Bottom = 25
-      EditLabel.AnchorSideLeft.Control = txtValue
-      EditLabel.AnchorSideRight.Control = txtValue
-      EditLabel.AnchorSideRight.Side = asrBottom
-      EditLabel.AnchorSideBottom.Control = txtValue
-      EditLabel.Left = 7
-      EditLabel.Height = 15
-      EditLabel.Top = 48
-      EditLabel.Width = 167
-      EditLabel.Caption = 'Value'
-      EditLabel.ParentColor = False
-      TabOrder = 1
-    end
-    object txtName: TLabeledEdit
-      AnchorSideLeft.Control = grpComponentDetail
-      AnchorSideRight.Control = grpComponentDetail
-      AnchorSideRight.Side = asrBottom
-      Left = 7
-      Height = 23
-      Top = 114
-      Width = 167
-      Anchors = [akLeft, akRight]
-      BorderSpacing.Left = 7
-      BorderSpacing.Right = 7
-      EditLabel.AnchorSideLeft.Control = txtName
-      EditLabel.AnchorSideRight.Control = txtName
-      EditLabel.AnchorSideRight.Side = asrBottom
-      EditLabel.AnchorSideBottom.Control = txtName
-      EditLabel.Left = 7
-      EditLabel.Height = 15
-      EditLabel.Top = 96
-      EditLabel.Width = 167
-      EditLabel.Caption = 'Name'
-      EditLabel.ParentColor = False
-      TabOrder = 2
-    end
-    object cmbCategory: TComboBox
-      AnchorSideLeft.Control = grpComponentDetail
-      AnchorSideTop.Control = Label1
-      AnchorSideTop.Side = asrBottom
-      AnchorSideRight.Control = grpComponentDetail
-      AnchorSideRight.Side = asrBottom
-      Left = 7
-      Height = 23
-      Top = 166
-      Width = 167
-      Anchors = [akTop, akLeft, akRight]
-      BorderSpacing.Left = 7
-      BorderSpacing.Top = 4
-      BorderSpacing.Right = 7
-      ItemHeight = 15
-      TabOrder = 3
-    end
-    object Label1: TLabel
-      AnchorSideTop.Control = txtName
-      AnchorSideTop.Side = asrBottom
-      Left = 7
-      Height = 15
-      Top = 147
-      Width = 48
-      BorderSpacing.Top = 10
-      Caption = 'Category'
-      ParentColor = False
-    end
-    object lstRefDes: TListBox
-      AnchorSideLeft.Control = grpComponentDetail
-      AnchorSideTop.Control = Label2
-      AnchorSideTop.Side = asrBottom
-      AnchorSideRight.Control = grpComponentDetail
-      AnchorSideRight.Side = asrBottom
-      AnchorSideBottom.Control = grpComponentDetail
-      AnchorSideBottom.Side = asrBottom
-      Left = 7
-      Height = 227
-      Top = 219
-      Width = 167
-      Anchors = [akTop, akLeft, akRight, akBottom]
-      BorderSpacing.Left = 7
-      BorderSpacing.Top = 5
-      BorderSpacing.Right = 7
-      BorderSpacing.Bottom = 3
-      ItemHeight = 0
-      TabOrder = 4
-    end
-    object Label2: TLabel
-      AnchorSideTop.Control = cmbCategory
-      AnchorSideTop.Side = asrBottom
-      Left = 7
-      Height = 15
-      Top = 199
-      Width = 117
-      BorderSpacing.Top = 10
-      Caption = 'Reference Designators'
-      ParentColor = False
-    end
-  end
   object Splitter1: TSplitter
     Left = 267
-    Height = 472
+    Height = 507
     Top = 0
     Width = 5
+  end
+  object pnlRight: TPanel
+    Left = 272
+    Height = 507
+    Top = 0
+    Width = 356
+    Align = alClient
+    BevelOuter = bvNone
+    ClientHeight = 507
+    ClientWidth = 356
+    TabOrder = 3
+    object grpComponentDetail: TGroupBox
+      AnchorSideLeft.Control = pnlRight
+      AnchorSideTop.Control = grpProjectInfo
+      AnchorSideTop.Side = asrBottom
+      AnchorSideRight.Control = pnlRight
+      AnchorSideRight.Side = asrBottom
+      AnchorSideBottom.Control = pnlRight
+      AnchorSideBottom.Side = asrBottom
+      Left = 3
+      Height = 358
+      Top = 146
+      Width = 350
+      Anchors = [akLeft, akRight, akBottom]
+      AutoSize = True
+      BorderSpacing.Left = 3
+      BorderSpacing.Right = 3
+      BorderSpacing.Bottom = 3
+      Caption = 'Component Detail'
+      ClientHeight = 338
+      ClientWidth = 346
+      Constraints.MaxHeight = 358
+      Constraints.MinHeight = 358
+      Enabled = False
+      TabOrder = 0
+      object txtQuantity: TLabeledEdit
+        AnchorSideLeft.Control = grpComponentDetail
+        AnchorSideTop.Control = grpComponentDetail
+        AnchorSideRight.Control = grpComponentDetail
+        AnchorSideRight.Side = asrBottom
+        AnchorSideBottom.Control = txtValue
+        Left = 7
+        Height = 23
+        Top = 18
+        Width = 332
+        Anchors = [akLeft, akRight, akBottom]
+        BorderSpacing.Left = 7
+        BorderSpacing.Right = 7
+        BorderSpacing.Bottom = 25
+        EditLabel.AnchorSideLeft.Control = txtQuantity
+        EditLabel.AnchorSideRight.Control = txtQuantity
+        EditLabel.AnchorSideRight.Side = asrBottom
+        EditLabel.AnchorSideBottom.Control = txtQuantity
+        EditLabel.Left = 7
+        EditLabel.Height = 15
+        EditLabel.Top = 0
+        EditLabel.Width = 332
+        EditLabel.Caption = 'Quantity'
+        EditLabel.ParentColor = False
+        TabOrder = 0
+      end
+      object txtValue: TLabeledEdit
+        AnchorSideLeft.Control = grpComponentDetail
+        AnchorSideTop.Control = txtQuantity
+        AnchorSideTop.Side = asrBottom
+        AnchorSideRight.Control = grpComponentDetail
+        AnchorSideRight.Side = asrBottom
+        AnchorSideBottom.Control = txtName
+        Left = 7
+        Height = 23
+        Top = 66
+        Width = 332
+        Anchors = [akLeft, akRight, akBottom]
+        BorderSpacing.Left = 7
+        BorderSpacing.Right = 7
+        BorderSpacing.Bottom = 25
+        EditLabel.AnchorSideLeft.Control = txtValue
+        EditLabel.AnchorSideRight.Control = txtValue
+        EditLabel.AnchorSideRight.Side = asrBottom
+        EditLabel.AnchorSideBottom.Control = txtValue
+        EditLabel.Left = 7
+        EditLabel.Height = 15
+        EditLabel.Top = 48
+        EditLabel.Width = 332
+        EditLabel.Caption = 'Value'
+        EditLabel.ParentColor = False
+        TabOrder = 1
+      end
+      object txtName: TLabeledEdit
+        AnchorSideLeft.Control = grpComponentDetail
+        AnchorSideRight.Control = grpComponentDetail
+        AnchorSideRight.Side = asrBottom
+        AnchorSideBottom.Control = Label1
+        Left = 7
+        Height = 23
+        Top = 114
+        Width = 332
+        Anchors = [akLeft, akRight, akBottom]
+        BorderSpacing.Left = 7
+        BorderSpacing.Right = 7
+        BorderSpacing.Bottom = 5
+        EditLabel.AnchorSideLeft.Control = txtName
+        EditLabel.AnchorSideRight.Control = txtName
+        EditLabel.AnchorSideRight.Side = asrBottom
+        EditLabel.AnchorSideBottom.Control = txtName
+        EditLabel.Left = 7
+        EditLabel.Height = 15
+        EditLabel.Top = 96
+        EditLabel.Width = 332
+        EditLabel.Caption = 'Name'
+        EditLabel.ParentColor = False
+        TabOrder = 2
+      end
+      object cmbCategory: TComboBox
+        AnchorSideLeft.Control = grpComponentDetail
+        AnchorSideTop.Control = Label1
+        AnchorSideTop.Side = asrBottom
+        AnchorSideRight.Control = grpComponentDetail
+        AnchorSideRight.Side = asrBottom
+        AnchorSideBottom.Control = Label2
+        Left = 7
+        Height = 23
+        Top = 162
+        Width = 332
+        Anchors = [akLeft, akRight, akBottom]
+        BorderSpacing.Left = 7
+        BorderSpacing.Right = 7
+        BorderSpacing.Bottom = 10
+        ItemHeight = 15
+        TabOrder = 3
+      end
+      object Label1: TLabel
+        AnchorSideTop.Control = txtName
+        AnchorSideTop.Side = asrBottom
+        AnchorSideBottom.Control = cmbCategory
+        Left = 7
+        Height = 15
+        Top = 142
+        Width = 48
+        Anchors = [akLeft, akBottom]
+        BorderSpacing.Bottom = 5
+        Caption = 'Category'
+        ParentColor = False
+      end
+      object lstRefDes: TListBox
+        AnchorSideLeft.Control = grpComponentDetail
+        AnchorSideTop.Control = Label2
+        AnchorSideTop.Side = asrBottom
+        AnchorSideRight.Control = grpComponentDetail
+        AnchorSideRight.Side = asrBottom
+        AnchorSideBottom.Control = grpComponentDetail
+        AnchorSideBottom.Side = asrBottom
+        Left = 7
+        Height = 120
+        Top = 215
+        Width = 332
+        Anchors = [akLeft, akRight, akBottom]
+        BorderSpacing.Left = 7
+        BorderSpacing.Right = 7
+        BorderSpacing.Bottom = 3
+        Constraints.MaxHeight = 120
+        ItemHeight = 0
+        TabOrder = 4
+      end
+      object Label2: TLabel
+        AnchorSideTop.Control = cmbCategory
+        AnchorSideTop.Side = asrBottom
+        AnchorSideBottom.Control = lstRefDes
+        Left = 7
+        Height = 15
+        Top = 195
+        Width = 117
+        Anchors = [akLeft, akBottom]
+        BorderSpacing.Left = 7
+        BorderSpacing.Top = 10
+        BorderSpacing.Bottom = 5
+        Caption = 'Reference Designators'
+        ParentColor = False
+      end
+    end
+    object grpProjectInfo: TGroupBox
+      AnchorSideLeft.Control = pnlRight
+      AnchorSideTop.Control = pnlRight
+      AnchorSideRight.Control = pnlRight
+      AnchorSideRight.Side = asrBottom
+      AnchorSideBottom.Control = grpComponentDetail
+      Left = 3
+      Height = 146
+      Top = 0
+      Width = 350
+      Anchors = [akTop, akLeft, akRight, akBottom]
+      BorderSpacing.Left = 3
+      BorderSpacing.Right = 3
+      Caption = 'Project Information'
+      ClientHeight = 126
+      ClientWidth = 346
+      TabOrder = 1
+      object vlsProjectInfo: TValueListEditor
+        Left = 3
+        Height = 123
+        Top = 0
+        Width = 340
+        Align = alClient
+        BorderSpacing.Left = 3
+        BorderSpacing.Right = 3
+        BorderSpacing.Bottom = 3
+        DefaultColWidth = 130
+        FixedCols = 0
+        RowCount = 5
+        TabOrder = 0
+        TitleStyle = tsNative
+        KeyOptions = [keyEdit, keyAdd, keyDelete]
+        Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRowSizing, goColSizing, goRowMoving, goEditing, goAutoAddRows, goAlwaysShowEditor, goThumbTracking, goSmoothScroll]
+        Strings.Strings = (
+          'Name='
+          'Quantity='
+          'Lot='
+          'Serial #='
+        )
+        TitleCaptions.Strings = (
+          'Name'
+          'Value'
+        )
+        ColWidths = (
+          130
+          206
+        )
+      end
+    end
   end
   object mnuMain: TMainMenu
     left = 360
@@ -216,6 +295,16 @@ object MainForm: TMainForm
       object mnuLoadBOM: TMenuItem
         Caption = 'L&oad BOM File'
         OnClick = mnuLoadBOMClick
+      end
+      object MenuItem4: TMenuItem
+        Caption = '-'
+      end
+      object mnuPrint: TMenuItem
+        Caption = 'Print'
+        OnClick = mnuPrintClick
+      end
+      object MenuItem3: TMenuItem
+        Caption = '-'
       end
       object mnuExit: TMenuItem
         Caption = 'E&xit'
