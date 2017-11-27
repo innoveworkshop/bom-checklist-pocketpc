@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, Menus,
-  ComCtrls, Printers, StdCtrls, ExtCtrls, Grids, ValEdit, POSPrinter, BOMParser,
+  ComCtrls, Printers, StdCtrls, ExtCtrls, ValEdit, POSPrinter, BOMParser,
   frmPrinterSetup;
 
 type
@@ -31,6 +31,7 @@ type
     dlgOpen: TOpenDialog;
     MenuItem3: TMenuItem;
     MenuItem4: TMenuItem;
+    mnuPrintTestPage: TMenuItem;
     mnuPrint: TMenuItem;
     pnlRight: TPanel;
     txtQuantity: TLabeledEdit;
@@ -52,6 +53,7 @@ type
     procedure mnuExitClick(Sender: TObject);
     procedure mnuLoadBOMClick(Sender: TObject);
     procedure mnuPrintClick(Sender: TObject);
+    procedure mnuPrintTestPageClick(Sender: TObject);
     procedure mnuSetupPrinterClick(Sender: TObject);
     procedure treeComponentsSelectionChanged(Sender: TObject);
   private
@@ -77,14 +79,6 @@ procedure TMainForm.SetPrinter(pname: String; pwidth: Integer; maxline: Integer)
 begin
   SetupPrinter(pname, pwidth, maxline);
   statusBar.Panels.Items[0].Text := pname + ' set as the default printer';
-
-  {try
-    BeginPrint('Test Page');
-    PrintTestPage(false);
-    PrinterCut(CUT_PREPARE);
-  finally
-    EndPrint;
-  end;}
 end;
 
 procedure TMainForm.FormCreate(Sender: TObject);
@@ -93,7 +87,7 @@ begin
   BOM.ParseFile;
 
   PopulateComponentTree;
-  SetupPrinter('POS58', 58, 42);
+  SetupPrinter('POS58', 58, 32);
 end;
 
 procedure TMainForm.FormClose(Sender: TObject; var CloseAction: TCloseAction);
@@ -119,9 +113,73 @@ begin
 end;
 
 procedure TMainForm.mnuPrintClick(Sender: TObject);
+var
+  i, j: Integer;
+  str: String;
 begin
-  { TODO: Print the stuff. }
-  WriteLn(vlsProjectInfo.Strings.Strings[0]);
+  try
+    BeginPrint(vlsProjectInfo.Values['Name']);
+
+    PrinterJustify(JUSTIFY_CENTER);
+    PrinterBold(true);
+    PrintLine(vlsProjectInfo.Values['Name']);
+    PrinterFeed(1);
+    PrinterBold(false);
+    PrintLine('Project Information');
+    PrinterJustify(JUSTIFY_LEFT);
+
+    for i := 2 to vlsProjectInfo.Strings.Count do
+    begin
+      PrintLine(vlsProjectInfo.Keys[i] + ': ', vlsProjectInfo.Values[vlsProjectInfo.Keys[i]]);
+    end;
+
+    PrinterFeed(1);
+    PrinterJustify(JUSTIFY_CENTER);
+    PrintLine('Component List');
+    PrinterJustify(JUSTIFY_LEFT);
+
+    for i := 0 to BOM.Categories.Count - 1 do
+    begin
+      PrintLine(BOM.Categories.Strings[i] + ':');
+
+      for j := 0 to Length(BOM.Components) - 1 do
+      begin
+        if BOM.Components[j].Category = BOM.Categories.Strings[i] then
+        begin
+          str := IntToStr(BOM.Components[j].Quantity * StrToInt(vlsProjectInfo.Values['Quantity'])) + 'x ';
+
+          if BOM.Components[j].Value <> '' then
+             str := str + BOM.Components[j].Value + ' (' + BOM.Components[j].Name + ')'
+          else
+             str := str + BOM.Components[j].Name;
+
+          PrintLine(str, '[_]');
+          PrinterJustify(JUSTIFY_RIGHT);
+          PrintLine(BOM.Components[j].RefDes);
+          PrinterJustify(JUSTIFY_LEFT);
+        end;
+      end;
+
+      PrinterFeed(1);
+    end;
+
+    PrinterJustify(JUSTIFY_CENTER);
+    PrintBarcode(vlsProjectInfo.Values['Lot'], BARCODE_CODE39, true);
+    PrinterCut(CUT_PREPARE);
+  finally
+    EndPrint;
+  end;
+end;
+
+procedure TMainForm.mnuPrintTestPageClick(Sender: TObject);
+begin
+  try
+    BeginPrint('Test Page');
+    PrintTestPage(true);
+    PrinterCut(CUT_PREPARE);
+  finally
+    EndPrint;
+  end;
 end;
 
 procedure TMainForm.mnuSetupPrinterClick(Sender: TObject);

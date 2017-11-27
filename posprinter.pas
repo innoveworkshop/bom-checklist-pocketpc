@@ -59,6 +59,7 @@ procedure PrinterUnderline(utype: Char);
 procedure PrinterBold(enable: Boolean);
 
 procedure PrintLine(line: String);
+procedure PrintLine(left: String; right: String);
 procedure PrintBarcode(number: String; btype: Char; print_num: Boolean);
 
 procedure PrintTestPage(printcs: Boolean);
@@ -134,6 +135,28 @@ end;
 procedure PrintLine(line: String);
 begin
   Printer.Write(line + LF);
+end;
+
+{ Prints a line with two strings spaced in the middle. }
+procedure PrintLine(left: String; right: String);
+var
+  space: Integer;
+  str: String;
+  i: Integer;
+begin
+  space := POS.MaxCharLine - (Length(left) + Length(right));
+  str := left;
+
+  if space > 0 then
+  begin
+    for i := 1 to space do
+    begin
+      str := str + ' ';
+    end;
+  end;
+
+  str := str + right;
+  PrintLine(str);
 end;
 
 { Prints a barcode. }

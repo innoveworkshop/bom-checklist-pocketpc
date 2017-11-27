@@ -317,6 +317,10 @@ object MainForm: TMainForm
         Caption = '&Setup Printer'
         OnClick = mnuSetupPrinterClick
       end
+      object mnuPrintTestPage: TMenuItem
+        Caption = 'Print Test Page'
+        OnClick = mnuPrintTestPageClick
+      end
     end
   end
   object dlgOpen: TOpenDialog
