@@ -2,6 +2,8 @@
 
 A simple application to create checklists and other minor things related to BOMs for production. This is a tool created to make our life easier at [Innove Workshop](http://innoveworkshop.com/).
 
+![Windows version](https://i.imgur.com/ZTdA55Z.png)
+
 
 ## Example BOM File
 
