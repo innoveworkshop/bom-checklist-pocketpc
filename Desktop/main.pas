@@ -31,9 +31,11 @@ type
     dlgOpen: TOpenDialog;
     MenuItem3: TMenuItem;
     MenuItem4: TMenuItem;
+    mnuSaveXML: TMenuItem;
     mnuPrintTestPage: TMenuItem;
     mnuPrint: TMenuItem;
     pnlRight: TPanel;
+    dlgSave: TSaveDialog;
     txtQuantity: TLabeledEdit;
     txtValue: TLabeledEdit;
     txtName: TLabeledEdit;
@@ -54,6 +56,7 @@ type
     procedure mnuLoadBOMClick(Sender: TObject);
     procedure mnuPrintClick(Sender: TObject);
     procedure mnuPrintTestPageClick(Sender: TObject);
+    procedure mnuSaveXMLClick(Sender: TObject);
     procedure mnuSetupPrinterClick(Sender: TObject);
     procedure treeComponentsSelectionChanged(Sender: TObject);
   private
@@ -180,6 +183,11 @@ begin
   finally
     EndPrint;
   end;
+end;
+
+procedure TMainForm.mnuSaveXMLClick(Sender: TObject);
+begin
+  { TODO: Export XML BOM for the PocketPC app. }
 end;
 
 procedure TMainForm.mnuSetupPrinterClick(Sender: TObject);

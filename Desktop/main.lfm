@@ -296,11 +296,15 @@ object MainForm: TMainForm
         Caption = 'L&oad BOM File'
         OnClick = mnuLoadBOMClick
       end
+      object mnuSaveXML: TMenuItem
+        Caption = '&Export XML'
+        OnClick = mnuSaveXMLClick
+      end
       object MenuItem4: TMenuItem
         Caption = '-'
       end
       object mnuPrint: TMenuItem
-        Caption = 'Print'
+        Caption = '&Print'
         OnClick = mnuPrintClick
       end
       object MenuItem3: TMenuItem
@@ -329,5 +333,12 @@ object MainForm: TMainForm
     Options = [ofFileMustExist, ofEnableSizing, ofViewDetail, ofAutoPreview]
     left = 360
     top = 376
+  end
+  object dlgSave: TSaveDialog
+    Title = 'Save XML BOM file'
+    DefaultExt = '.xml'
+    Filter = 'XML Bill of Materials|*.xml|All files|*.*'
+    left = 360
+    top = 432
   end
 end
