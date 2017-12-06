@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CONFIG>
   <ProjectOptions>
-    <Version Value="9"/>
+    <Version Value="10"/>
     <PathDelim Value="\"/>
     <General>
       <SessionStorage Value="InProjectDir"/>
@@ -36,7 +36,7 @@
         <PackageName Value="LCL"/>
       </Item2>
     </RequiredPackages>
-    <Units Count="4">
+    <Units Count="5">
       <Unit0>
         <Filename Value="BOM_Checklist.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -61,6 +61,11 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="frmPrinterSetup"/>
       </Unit3>
+      <Unit4>
+        <Filename Value="xmlhelper.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="XMLHelper"/>
+      </Unit4>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

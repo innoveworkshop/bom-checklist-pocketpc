@@ -1,7 +1,7 @@
 object MainForm: TMainForm
-  Left = 303
+  Left = 313
   Height = 550
-  Top = 154
+  Top = 181
   Width = 628
   Caption = 'BOM Checklist'
   ClientHeight = 530
@@ -11,7 +11,7 @@ object MainForm: TMainForm
   Menu = mnuMain
   OnClose = FormClose
   OnCreate = FormCreate
-  LCLVersion = '1.6.0.4'
+  LCLVersion = '1.6.4.0'
   object statusBar: TStatusBar
     Left = 0
     Height = 23
@@ -271,10 +271,10 @@ object MainForm: TMainForm
         KeyOptions = [keyEdit, keyAdd, keyDelete]
         Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRowSizing, goColSizing, goRowMoving, goEditing, goAutoAddRows, goAlwaysShowEditor, goThumbTracking, goSmoothScroll]
         Strings.Strings = (
-          'Name='
-          'Quantity='
-          'Lot='
-          'Serial #='
+          'Name=Testing Project'
+          'Quantity=10'
+          'Lot=123'
+          'Serial #=456'
         )
         TitleCaptions.Strings = (
           'Name'

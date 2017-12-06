@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, FileUtil, Forms, Controls, Graphics, Dialogs, Menus,
   ComCtrls, Printers, StdCtrls, ExtCtrls, ValEdit, POSPrinter, BOMParser,
-  frmPrinterSetup;
+  XMLHelper, frmPrinterSetup;
 
 type
   { TTreeData }
@@ -73,6 +73,7 @@ implementation
 
 var
   BOM: TBOMParser;
+  XML: TXMLHelper;
 
 {$R *.lfm}
 
@@ -86,8 +87,10 @@ end;
 
 procedure TMainForm.FormCreate(Sender: TObject);
 begin
-  BOM := TBOMParser.Create('test.csv');
+  BOM := TBOMParser.Create('../test.csv');
   BOM.ParseFile;
+
+  XML := TXMLHelper.Create(BOM);
 
   PopulateComponentTree;
   SetupPrinter('POS58', 58, 32);
@@ -187,7 +190,14 @@ end;
 
 procedure TMainForm.mnuSaveXMLClick(Sender: TObject);
 begin
-  { TODO: Export XML BOM for the PocketPC app. }
+  if dlgSave.Execute then
+  begin
+    XML.PopulateProjectInfo(vlsProjectInfo.Strings);
+    XML.PopulateCategories;
+    XML.Write(dlgSave.FileName);
+
+    statusBar.Caption := 'BOM exported to "' + dlgSave.FileName + '"';
+  end;
 end;
 
 procedure TMainForm.mnuSetupPrinterClick(Sender: TObject);
