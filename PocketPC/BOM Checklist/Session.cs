@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace Production_Assistant {
-	class Session {
+	public class Session {
 		public Dictionary<string, string> ProjectInfo;
 		public List<string> Categories;
 		public Dictionary<string, List<Component>> Components;

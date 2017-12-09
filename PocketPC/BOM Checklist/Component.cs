@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace Production_Assistant {
-	class Component {
+	public class Component {
 		public int ID;
 		public bool Checked;
 		public int Quantity;

@@ -25,7 +25,7 @@ namespace Production_Assistant {
 			SessionParser.LoadXML("\\Storage Card\\test.xml");
 			statusBar.Text = "Loaded session: \\Storage Card\\test.xml";
 
-			PopulateComponentTree();
+			UpdateComponentTree();
 		}
 
 		/**
@@ -57,7 +57,7 @@ namespace Production_Assistant {
 			dlgOpen.ShowDialog();
 
 			SessionParser.LoadXML(dlgOpen.FileName);
-			PopulateComponentTree();
+			UpdateComponentTree();
 			statusBar.Text = "Loaded session: " + dlgOpen.FileName;
 		}
 
@@ -65,18 +65,14 @@ namespace Production_Assistant {
 		 * Shows the project information screen.
 		 */
 		private void mnuInfo_Click(object sender, EventArgs e) {
-			string str = "";
-			foreach (KeyValuePair<string, string> item in session.ProjectInfo) {
-				str += item.Key + ": " + item.Value + "\r\n";
-			}
-
-			MessageBox.Show(str, "Project Information");
+			ProjectInfoForm form = new ProjectInfoForm(session);
+			form.ShowDialog();
 		}
 
 		/**
 		 * Populates the components tree view.
 		 */
-		private void PopulateComponentTree() {
+		private void UpdateComponentTree() {
 			treeComponents.Nodes.Clear();
 			int current_group = 0;
 

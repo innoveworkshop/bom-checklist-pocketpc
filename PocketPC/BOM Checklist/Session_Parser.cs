@@ -4,7 +4,7 @@ using System.Text;
 using System.Xml;
 
 namespace Production_Assistant {
-	class Session_Parser {
+	public class Session_Parser {
 		private XmlDocument doc;
 		private XmlNode project;
 		private Session session;

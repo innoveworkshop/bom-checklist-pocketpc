@@ -29,6 +29,7 @@ namespace Production_Assistant
         /// </summary>
         private void InitializeComponent()
         {
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
 			this.mnuMain = new System.Windows.Forms.MainMenu();
 			this.mnuMenu = new System.Windows.Forms.MenuItem();
 			this.mnuLoad = new System.Windows.Forms.MenuItem();
@@ -108,6 +109,7 @@ namespace Production_Assistant
 			this.ClientSize = new System.Drawing.Size(240, 268);
 			this.Controls.Add(this.statusBar);
 			this.Controls.Add(this.treeComponents);
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.KeyPreview = true;
 			this.Menu = this.mnuMain;
 			this.Name = "MainForm";
