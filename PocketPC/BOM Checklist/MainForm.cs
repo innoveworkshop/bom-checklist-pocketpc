@@ -25,6 +25,10 @@ namespace Production_Assistant {
 			SessionParser.LoadXML("\\Storage Card\\test.xml");
 			statusBar.Text = "Loaded session: \\Storage Card\\test.xml";
 
+			session.Export().Save("\\Storage Card\\test_ppc.xml");
+			// TODO: Try catch
+			statusBar.Text = "Exported";
+
 			UpdateComponentTree();
 		}
 
@@ -140,6 +144,7 @@ namespace Production_Assistant {
 			if (treeComponents.SelectedNode.Nodes.Count == 0) {
 				ComponentDetailForm form = new ComponentDetailForm(session, treeComponents.SelectedNode.Parent.Text, (Component)treeComponents.SelectedNode.Tag);
 				form.ShowDialog();
+				UpdateComponentTree();
 			} else {
 				MessageBox.Show("Select a component, not a category", "User Failure", MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
 			}

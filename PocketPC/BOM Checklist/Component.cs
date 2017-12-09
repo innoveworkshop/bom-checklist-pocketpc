@@ -51,6 +51,8 @@ namespace Production_Assistant {
 
 		/**
 		 * Builds back the original style of reference designator string.
+		 * 
+		 * @return Reference designators list as a string.
 		 */
 		public string RefDesString() {
 			string str = "";
@@ -70,6 +72,7 @@ namespace Production_Assistant {
 		 * Split the reference designator string into a list.
 		 * 
 		 * @param str Reference designator string.
+		 * @return Reference designators list.
 		 */
 		private List<string> SplitRefDes(string str) {
 			List<string> list = new List<string>();

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Xml;
 
 namespace Production_Assistant {
 	public class Session {
@@ -41,6 +42,51 @@ namespace Production_Assistant {
 					}
 				}
 			}
+		}
+
+		/**
+		 * Exports the current session to the XML format.
+		 * 
+		 * @return XML Document of the current session.
+		 */
+		public XmlDocument Export() {
+			XmlDocument doc = new XmlDocument();
+			XmlNode decNode = doc.CreateXmlDeclaration("1.0", "utf-8", null);
+			doc.AppendChild(decNode);
+			XmlNode root = doc.CreateElement("project");
+
+			// Project info.
+			XmlNode infoNode = doc.CreateElement("info");
+			foreach (KeyValuePair<string, string> info in ProjectInfo) {
+				XmlNode infoChild = doc.CreateElement(CleanStringForTag(info.Key));
+				infoChild.InnerText = info.Value;
+				XmlAttribute infoAttribute = doc.CreateAttribute("text");
+				infoAttribute.Value = info.Key;
+				infoChild.Attributes.Append(infoAttribute);
+				infoNode.AppendChild(infoChild);
+			}
+			root.AppendChild(infoNode);
+
+			doc.AppendChild(root);
+			return doc;
+		}
+
+		/**
+		 * Cleans a string to be used as a XML tag.
+		 * 
+		 * @param s String to be cleaned.
+		 * @return Cleaned string.
+		 */
+		private string CleanStringForTag(string s) {
+			string str = "";
+
+			foreach (char c in s) {
+				if (((c >= 65) && (c <= 90)) || ((c >= 97) && (c <= 122))) {
+					str += c;
+				}
+			}
+
+			return str.ToLower();
 		}
 	}
 }
