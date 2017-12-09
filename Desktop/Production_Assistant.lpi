@@ -43,7 +43,7 @@
     </RequiredPackages>
     <Units Count="6">
       <Unit0>
-        <Filename Value="BOM_Checklist.lpr"/>
+        <Filename Value="Production_Assistant.lpr"/>
         <IsPartOfProject Value="True"/>
       </Unit0>
       <Unit1>
@@ -82,7 +82,7 @@
     <Version Value="11"/>
     <PathDelim Value="\"/>
     <Target>
-      <Filename Value="BOM_Checklist"/>
+      <Filename Value="Production_Assistant"/>
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>

@@ -1,4 +1,4 @@
-program BOM_Checklist;
+program Production_Assistant;
 
 {$mode objfpc}{$H+}
 
