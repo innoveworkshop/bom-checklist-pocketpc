@@ -11,7 +11,7 @@ object MainForm: TMainForm
   Menu = mnuMain
   OnClose = FormClose
   OnCreate = FormCreate
-  LCLVersion = '1.6.4.0'
+  LCLVersion = '1.6.0.4'
   object statusBar: TStatusBar
     Left = 0
     Height = 23

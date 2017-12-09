@@ -194,9 +194,10 @@ begin
   begin
     XML.PopulateProjectInfo(vlsProjectInfo.Strings);
     XML.PopulateCategories;
+    XML.PopulateComponents;
     XML.Write(dlgSave.FileName);
 
-    statusBar.Caption := 'BOM exported to "' + dlgSave.FileName + '"';
+    statusBar.Panels.Items[0].Text := 'BOM exported to "' + dlgSave.FileName + '"';
   end;
 end;
 
