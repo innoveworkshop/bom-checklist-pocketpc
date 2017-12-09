@@ -30,6 +30,7 @@ namespace Production_Assistant {
 
 			PopulateProjectInfo();
 			PopulateCategories();
+			PopulateComponents();
 		}
 
 		/**
@@ -43,20 +44,38 @@ namespace Production_Assistant {
 		}
 
 		/**
-		 * Populates the session categories array.
+		 * Populates the session categories list.
 		 */
 		private void PopulateCategories() {
 			XmlNodeList items = project["categories"].SelectNodes("category");
 			for (int i = 0; i < items.Count; i++) {
 				session.Categories.Add(items[i].InnerText);
 			}
+		}
 
-			string str = "";
-			for (int i = 0; i < session.Categories.Count; i++) {
-				str += session.Categories[i] + "\r\n";
+		/**
+		 * Populate the session components dictionary.
+		 */
+		private void PopulateComponents() {
+			XmlNodeList groups = project.SelectNodes("group");
+			for (int i = 0; i < groups.Count; i++) {
+				List<Component> components = new List<Component>();
+				XmlNodeList items = groups[i].SelectNodes("component");
+
+				for (int j = 0; j < items.Count; j++) {
+					int id = int.Parse(items[j].Attributes["id"].Value);
+					bool check = XmlConvert.ToBoolean(items[j].Attributes["checked"].Value);
+					int quantity = int.Parse(items[j]["quantity"].InnerText);
+					string value = items[j]["value"].InnerText;
+					string name = items[j]["name"].InnerText;
+					string refdes = items[j]["references"].Attributes["text"].Value;
+
+					components.Add(new Component(id, check, quantity, value, name, refdes));
+				}
+
+				session.Components.Add(groups[i].Attributes["category"].Value, components);
 			}
 
-			System.Windows.Forms.MessageBox.Show(str);
 		}
 	}
 }

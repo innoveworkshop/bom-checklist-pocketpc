@@ -54,6 +54,9 @@ namespace Production_Assistant {
 			SessionParser.LoadXML(dlgOpen.FileName);
 		}
 
+		/**
+		 * Shows the project information screen.
+		 */
 		private void mnuInfo_Click(object sender, EventArgs e) {
 			string str = "";
 			foreach (KeyValuePair<string, string> item in session.ProjectInfo) {
@@ -61,6 +64,12 @@ namespace Production_Assistant {
 			}
 
 			MessageBox.Show(str, "Project Information");
+		}
+
+		/**
+		 * Populates the components tree view.
+		 */
+		private void PopulateComponentTree() {
 		}
 	}
 }

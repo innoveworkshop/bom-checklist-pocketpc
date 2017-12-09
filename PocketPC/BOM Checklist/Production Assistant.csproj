@@ -53,6 +53,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Component.cs" />
     <Compile Include="Session.cs" />
     <Compile Include="Session_Parser.cs" />
     <Compile Include="MainForm.cs">
