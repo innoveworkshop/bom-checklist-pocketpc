@@ -67,6 +67,7 @@ begin
   for i := 0 to list.Count - 1 do
   begin
     child := Document.CreateElement(LowerCase(StripNonLetterCharacters(list.Names[i])));
+    TDOMElement(child).SetAttribute('text', list.Names[i]);
     data := Document.CreateTextNode(list.ValueFromIndex[i]);
     child.AppendChild(data);
     parent.AppendChild(child);
