@@ -13,5 +13,9 @@ Desktop/lib/
 PocketPC/BOM Checklist/obj
 PocketPC/BOM Checklist/bin
 
+# Test files.
+test.csv
+test.xml
+
 # Misc.
 .DS_Store
