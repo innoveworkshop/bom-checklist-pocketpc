@@ -55,7 +55,7 @@ namespace Production_Assistant {
 			doc.AppendChild(decNode);
 			XmlNode root = doc.CreateElement("project");
 
-			// Project info.
+			// Project information.
 			XmlNode infoNode = doc.CreateElement("info");
 			foreach (KeyValuePair<string, string> info in ProjectInfo) {
 				XmlNode infoChild = doc.CreateElement(CleanStringForTag(info.Key));
@@ -66,6 +66,15 @@ namespace Production_Assistant {
 				infoNode.AppendChild(infoChild);
 			}
 			root.AppendChild(infoNode);
+
+			// Categories.
+			XmlNode categoriesNode = doc.CreateElement("categories");
+			for (int i = 0; i < Categories.Count; i++) {
+				XmlNode category = doc.CreateElement("category");
+				category.InnerText = Categories[i];
+				categoriesNode.AppendChild(category);
+			}
+			root.AppendChild(categoriesNode);
 
 			doc.AppendChild(root);
 			return doc;

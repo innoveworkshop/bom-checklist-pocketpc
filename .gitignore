@@ -16,6 +16,7 @@ PocketPC/BOM Checklist/bin
 # Test files.
 test.csv
 test.xml
+test_ppc.xml
 
 # Misc.
 *.pdnBak
