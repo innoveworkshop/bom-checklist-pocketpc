@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project>
+  <info>
+    <name text="Name">Name Value</name>
+  </info>
+  <categories>
+    <category>Category Name</category>
+  </categories>
+  <group category="Category">
+    <component id="1" checked="false">
+      <quantity>123</quantity>
+      <value>Value String</value>
+      <name>Component Name</name>
+      <references text="Ref1, Ref2">
+        <refdes>Ref1</refdes>
+		<refdes>Ref2</refdes>
+      </references>
+    </component>
+  </group>
+</project>
