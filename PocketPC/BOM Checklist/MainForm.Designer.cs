@@ -38,11 +38,13 @@ namespace Production_Assistant
 			this.mnuDetail = new System.Windows.Forms.MenuItem();
 			this.treeComponents = new System.Windows.Forms.TreeView();
 			this.dlgOpen = new System.Windows.Forms.OpenFileDialog();
+			this.mnuInfo = new System.Windows.Forms.MenuItem();
 			this.SuspendLayout();
 			// 
 			// mnuMain
 			// 
 			this.mnuMain.MenuItems.Add(this.mnuMenu);
+			this.mnuMain.MenuItems.Add(this.mnuInfo);
 			this.mnuMain.MenuItems.Add(this.mnuDetail);
 			// 
 			// mnuMenu
@@ -83,6 +85,11 @@ namespace Production_Assistant
 			this.treeComponents.Size = new System.Drawing.Size(240, 268);
 			this.treeComponents.TabIndex = 0;
 			// 
+			// mnuInfo
+			// 
+			this.mnuInfo.Text = "Info";
+			this.mnuInfo.Click += new System.EventHandler(this.mnuInfo_Click);
+			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -109,6 +116,7 @@ namespace Production_Assistant
         private System.Windows.Forms.MenuItem menuItem2;
         private System.Windows.Forms.MenuItem mnuSave;
 		private System.Windows.Forms.OpenFileDialog dlgOpen;
+		private System.Windows.Forms.MenuItem mnuInfo;
 
     }
 }

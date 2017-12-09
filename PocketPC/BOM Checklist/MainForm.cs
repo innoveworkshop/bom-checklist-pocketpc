@@ -8,17 +8,20 @@ using System.Windows.Forms;
 
 namespace Production_Assistant {
 	public partial class MainForm : Form {
-		private BOM_Parser BOM;
+		private Session session;
+		private Session_Parser SessionParser;
 
 		/**
 		 * Main form constructor.
 		 */
 		public MainForm() {
 			InitializeComponent();
-			treeComponents.Nodes.Add("Hello wolrd!");
+			treeComponents.Nodes.Add("Hello wolrd!");//////////////////////
+			////////////////////////////////////////////
 
-			BOM = new BOM_Parser();
-			BOM.LoadXML("\\Storage Card\\test.csv");
+			session = new Session();
+			SessionParser = new Session_Parser(session);
+			SessionParser.LoadXML("\\Storage Card\\test.xml");
 		}
 
 		/**
@@ -48,7 +51,16 @@ namespace Production_Assistant {
 		 */
 		private void mnuLoad_Click(object sender, EventArgs e) {
 			dlgOpen.ShowDialog();
-			BOM.LoadXML(dlgOpen.FileName);
+			SessionParser.LoadXML(dlgOpen.FileName);
+		}
+
+		private void mnuInfo_Click(object sender, EventArgs e) {
+			string str = "";
+			foreach (KeyValuePair<string, string> item in session.ProjectInfo) {
+				str += item.Key + ": " + item.Value + "\r\n";
+			}
+
+			MessageBox.Show(str, "Project Information");
 		}
 	}
 }
