@@ -1,3 +1,5 @@
+![Application Icon](https://i.imgur.com/tQE1cdd.png)
+
 # Production Assistant
 
 A simple application to create checklists, notes and other minor things related to production. This is a tool created to make our life easier at [Innove Workshop](http://innoveworkshop.com/).
