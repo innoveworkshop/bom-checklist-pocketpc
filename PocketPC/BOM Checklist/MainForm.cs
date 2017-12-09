@@ -114,7 +114,7 @@ namespace Production_Assistant {
 		 */
 		private void treeComponents_AfterSelect(object sender, TreeViewEventArgs e) {
 			if (treeComponents.SelectedNode.Nodes.Count == 0) {
-				statusBar.Text = ((Component)treeComponents.SelectedNode.Tag).RefDes;
+				statusBar.Text = ((Component)treeComponents.SelectedNode.Tag).RefDesString();
 			}
 		}
 
@@ -137,17 +137,12 @@ namespace Production_Assistant {
 		 * Detail button click event.
 		 */
 		private void mnuDetail_Click(object sender, EventArgs e) {
-			string str = "";
-
-			foreach (KeyValuePair<string, List<Component>> group in session.Components) {
-				for (int i = 0; i < group.Value.Count; i++) {
-					if (group.Value[i].Checked) {
-						str += group.Value[i].RefDes + "\r\n";
-					}
-				}
+			if (treeComponents.SelectedNode.Nodes.Count == 0) {
+				ComponentDetailForm form = new ComponentDetailForm(session, treeComponents.SelectedNode.Parent.Text, (Component)treeComponents.SelectedNode.Tag);
+				form.ShowDialog();
+			} else {
+				MessageBox.Show("Select a component, not a category", "User Failure", MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
 			}
-
-			MessageBox.Show(str);
 		}
 	}
 }
