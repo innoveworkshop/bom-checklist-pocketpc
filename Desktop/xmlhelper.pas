@@ -112,6 +112,7 @@ begin
       begin
         child := Document.CreateElement('component');
         TDOMElement(child).SetAttribute('id', IntToStr(BOM.Components[j].ID));
+        TDOMElement(child).SetAttribute('checked', 'false');
 
         item := Document.CreateElement('quantity');
         data := Document.CreateTextNode(IntToStr(BOM.Components[j].Quantity));
