@@ -35,10 +35,11 @@ namespace Production_Assistant
 			this.mnuSave = new System.Windows.Forms.MenuItem();
 			this.menuItem2 = new System.Windows.Forms.MenuItem();
 			this.mnuAbout = new System.Windows.Forms.MenuItem();
+			this.mnuInfo = new System.Windows.Forms.MenuItem();
 			this.mnuDetail = new System.Windows.Forms.MenuItem();
 			this.treeComponents = new System.Windows.Forms.TreeView();
 			this.dlgOpen = new System.Windows.Forms.OpenFileDialog();
-			this.mnuInfo = new System.Windows.Forms.MenuItem();
+			this.statusBar = new System.Windows.Forms.StatusBar();
 			this.SuspendLayout();
 			// 
 			// mnuMain
@@ -72,9 +73,15 @@ namespace Production_Assistant
 			// 
 			this.mnuAbout.Text = "About";
 			// 
+			// mnuInfo
+			// 
+			this.mnuInfo.Text = "Info";
+			this.mnuInfo.Click += new System.EventHandler(this.mnuInfo_Click);
+			// 
 			// mnuDetail
 			// 
 			this.mnuDetail.Text = "Detail";
+			this.mnuDetail.Click += new System.EventHandler(this.mnuDetail_Click);
 			// 
 			// treeComponents
 			// 
@@ -84,11 +91,14 @@ namespace Production_Assistant
 			this.treeComponents.Name = "treeComponents";
 			this.treeComponents.Size = new System.Drawing.Size(240, 268);
 			this.treeComponents.TabIndex = 0;
+			this.treeComponents.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.treeComponents_AfterCheck);
+			this.treeComponents.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeComponents_AfterSelect);
 			// 
-			// mnuInfo
+			// statusBar
 			// 
-			this.mnuInfo.Text = "Info";
-			this.mnuInfo.Click += new System.EventHandler(this.mnuInfo_Click);
+			this.statusBar.Location = new System.Drawing.Point(0, 246);
+			this.statusBar.Name = "statusBar";
+			this.statusBar.Size = new System.Drawing.Size(240, 22);
 			// 
 			// MainForm
 			// 
@@ -96,6 +106,7 @@ namespace Production_Assistant
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
 			this.AutoScroll = true;
 			this.ClientSize = new System.Drawing.Size(240, 268);
+			this.Controls.Add(this.statusBar);
 			this.Controls.Add(this.treeComponents);
 			this.KeyPreview = true;
 			this.Menu = this.mnuMain;
@@ -117,6 +128,7 @@ namespace Production_Assistant
         private System.Windows.Forms.MenuItem mnuSave;
 		private System.Windows.Forms.OpenFileDialog dlgOpen;
 		private System.Windows.Forms.MenuItem mnuInfo;
+		private System.Windows.Forms.StatusBar statusBar;
 
     }
 }

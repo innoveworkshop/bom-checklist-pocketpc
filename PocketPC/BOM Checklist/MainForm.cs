@@ -16,12 +16,16 @@ namespace Production_Assistant {
 		 */
 		public MainForm() {
 			InitializeComponent();
-			treeComponents.Nodes.Add("Hello wolrd!");//////////////////////
-			////////////////////////////////////////////
+			statusBar.Text = "Welcome!";
 
+			// Initialize the session and parser.
 			session = new Session();
 			SessionParser = new Session_Parser(session);
+
 			SessionParser.LoadXML("\\Storage Card\\test.xml");
+			statusBar.Text = "Loaded session: \\Storage Card\\test.xml";
+
+			PopulateComponentTree();
 		}
 
 		/**
@@ -51,7 +55,10 @@ namespace Production_Assistant {
 		 */
 		private void mnuLoad_Click(object sender, EventArgs e) {
 			dlgOpen.ShowDialog();
+
 			SessionParser.LoadXML(dlgOpen.FileName);
+			PopulateComponentTree();
+			statusBar.Text = "Loaded session: " + dlgOpen.FileName;
 		}
 
 		/**
@@ -70,6 +77,81 @@ namespace Production_Assistant {
 		 * Populates the components tree view.
 		 */
 		private void PopulateComponentTree() {
+			treeComponents.Nodes.Clear();
+			int current_group = 0;
+
+			foreach (KeyValuePair<string, List<Component>> group in session.Components) {
+				TreeNode node = new TreeNode(group.Key);
+				bool all_checked = true;
+
+				for (int i = 0; i < group.Value.Count; i++) {
+					Component component = group.Value[i];
+					TreeNode child = new TreeNode();
+					string str = component.Quantity.ToString() + "x ";
+
+					if (component.Value != "") {
+						str += component.Value + " (" + component.Name + ")";
+					} else {
+						str += component.Name;
+					}
+
+					child.Text = str;
+					child.Checked = component.Checked;
+					child.Tag = component;
+
+					if (!component.Checked) {
+						all_checked = false;
+					}
+
+					node.Nodes.Add(child);
+				}
+
+				node.Checked = all_checked;
+				node.Tag = current_group;
+				treeComponents.Nodes.Add(node);
+				current_group++;
+			}
+		}
+
+		/**
+		 * Component tree on select event.
+		 */
+		private void treeComponents_AfterSelect(object sender, TreeViewEventArgs e) {
+			if (treeComponents.SelectedNode.Nodes.Count == 0) {
+				statusBar.Text = ((Component)treeComponents.SelectedNode.Tag).RefDes;
+			}
+		}
+
+		/**
+		 * Component tree on check event.
+		 */
+		private void treeComponents_AfterCheck(object sender, TreeViewEventArgs e) {
+			if (e.Node.Nodes.Count == 0) {
+				// Component was checked.
+				((Component)e.Node.Tag).Checked = e.Node.Checked;
+			} else {
+				// Group was checked.
+				for (int i = 0; i < e.Node.Nodes.Count; i++) {
+					e.Node.Nodes[i].Checked = e.Node.Checked;
+				}
+			}
+		}
+
+		/**
+		 * Detail button click event.
+		 */
+		private void mnuDetail_Click(object sender, EventArgs e) {
+			string str = "";
+
+			foreach (KeyValuePair<string, List<Component>> group in session.Components) {
+				for (int i = 0; i < group.Value.Count; i++) {
+					if (group.Value[i].Checked) {
+						str += group.Value[i].RefDes + "\r\n";
+					}
+				}
+			}
+
+			MessageBox.Show(str);
 		}
 	}
 }
