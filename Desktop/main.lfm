@@ -3,7 +3,7 @@ object MainForm: TMainForm
   Height = 550
   Top = 181
   Width = 628
-  Caption = 'BOM Checklist'
+  Caption = 'Production Assistant'
   ClientHeight = 530
   ClientWidth = 628
   Constraints.MinHeight = 550

@@ -1,6 +1,6 @@
-# BOM Checklist
+# Production Assistant
 
-A simple application to create checklists and other minor things related to BOMs for production. This is a tool created to make our life easier at [Innove Workshop](http://innoveworkshop.com/).
+A simple application to create checklists, notes and other minor things related to production. This is a tool created to make our life easier at [Innove Workshop](http://innoveworkshop.com/).
 
 ![Windows version](https://i.imgur.com/ZTdA55Z.png)
 
@@ -26,3 +26,5 @@ This program accepts a CSV file that is in the following format:
 This is literally the CSV exported from DipTrace, but with a new column added `Category`. To get this just export the BOM from DipTrace using the following settings and add the `Category` column later in you favorite CSV editor:
 
 ![DipTrace BOM Export Settings](https://i.imgur.com/FVBZASp.png)
+
+After you've imported the BOM and set all the parameters in the application, you can now just save the session as a XML file and use that later.

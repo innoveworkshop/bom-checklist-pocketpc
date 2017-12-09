@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CONFIG>
   <ProjectOptions>
-    <Version Value="10"/>
+    <Version Value="9"/>
     <PathDelim Value="\"/>
     <General>
       <SessionStorage Value="InProjectDir"/>
       <MainUnit Value="0"/>
-      <Title Value="BOM_Checklist"/>
+      <Title Value="Production Assistant"/>
       <ResourceType Value="res"/>
       <UseXPManifest Value="True"/>
       <Icon Value="0"/>
@@ -15,7 +15,12 @@
       <EnableI18N LFM="False"/>
     </i18n>
     <VersionInfo>
-      <StringTable ProductVersion=""/>
+      <UseVersionInfo Value="True"/>
+      <AutoIncrementBuild Value="True"/>
+      <MajorVersionNr Value="1"/>
+      <RevisionNr Value="1"/>
+      <Attributes pvaPreRelease="True"/>
+      <StringTable Comments="Our internal production assistant app." CompanyName="Innove Workshop Company" InternalName="ProdAssist" LegalCopyright="Innove Workshop Company 2018" ProductName="Production Assistant" ProductVersion=""/>
     </VersionInfo>
     <BuildModes Count="1">
       <Item1 Name="Default" Default="True"/>
@@ -36,7 +41,7 @@
         <PackageName Value="LCL"/>
       </Item2>
     </RequiredPackages>
-    <Units Count="5">
+    <Units Count="6">
       <Unit0>
         <Filename Value="BOM_Checklist.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -49,23 +54,28 @@
         <ResourceBaseClass Value="Form"/>
       </Unit1>
       <Unit2>
-        <Filename Value="simplecsv.pas"/>
-        <IsPartOfProject Value="True"/>
-        <UnitName Value="BOMParser"/>
-      </Unit2>
-      <Unit3>
         <Filename Value="frmprintersetup.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="frmPrinterSetup"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="frmPrinterSetup"/>
-      </Unit3>
-      <Unit4>
+      </Unit2>
+      <Unit3>
         <Filename Value="xmlhelper.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="XMLHelper"/>
+      </Unit3>
+      <Unit4>
+        <Filename Value="posprinter.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="POSPrinter"/>
       </Unit4>
+      <Unit5>
+        <Filename Value="bomparser.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="BOMParser"/>
+      </Unit5>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
