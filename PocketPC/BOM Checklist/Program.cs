@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
-namespace BOM_Checklist {
+namespace Production_Assistant {
 	static class Program {
 		/// <summary>
 		/// The main entry point for the application.

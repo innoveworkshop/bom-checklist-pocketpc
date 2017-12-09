@@ -1,4 +1,4 @@
-namespace BOM_Checklist
+namespace Production_Assistant
 {
     partial class MainForm
     {
@@ -31,12 +31,12 @@ namespace BOM_Checklist
         {
 			this.mnuMain = new System.Windows.Forms.MainMenu();
 			this.mnuMenu = new System.Windows.Forms.MenuItem();
+			this.mnuLoad = new System.Windows.Forms.MenuItem();
+			this.mnuSave = new System.Windows.Forms.MenuItem();
+			this.menuItem2 = new System.Windows.Forms.MenuItem();
 			this.mnuAbout = new System.Windows.Forms.MenuItem();
 			this.mnuDetail = new System.Windows.Forms.MenuItem();
 			this.treeComponents = new System.Windows.Forms.TreeView();
-			this.mnuLoadBOM = new System.Windows.Forms.MenuItem();
-			this.menuItem2 = new System.Windows.Forms.MenuItem();
-			this.mnuSave = new System.Windows.Forms.MenuItem();
 			this.dlgOpen = new System.Windows.Forms.OpenFileDialog();
 			this.SuspendLayout();
 			// 
@@ -47,11 +47,24 @@ namespace BOM_Checklist
 			// 
 			// mnuMenu
 			// 
-			this.mnuMenu.MenuItems.Add(this.mnuLoadBOM);
+			this.mnuMenu.MenuItems.Add(this.mnuLoad);
 			this.mnuMenu.MenuItems.Add(this.mnuSave);
 			this.mnuMenu.MenuItems.Add(this.menuItem2);
 			this.mnuMenu.MenuItems.Add(this.mnuAbout);
 			this.mnuMenu.Text = "Menu";
+			// 
+			// mnuLoad
+			// 
+			this.mnuLoad.Text = "Load Session";
+			this.mnuLoad.Click += new System.EventHandler(this.mnuLoad_Click);
+			// 
+			// mnuSave
+			// 
+			this.mnuSave.Text = "Save Session";
+			// 
+			// menuItem2
+			// 
+			this.menuItem2.Text = "-";
 			// 
 			// mnuAbout
 			// 
@@ -70,19 +83,6 @@ namespace BOM_Checklist
 			this.treeComponents.Size = new System.Drawing.Size(240, 268);
 			this.treeComponents.TabIndex = 0;
 			// 
-			// mnuLoadBOM
-			// 
-			this.mnuLoadBOM.Text = "Load BOM File";
-			this.mnuLoadBOM.Click += new System.EventHandler(this.mnuLoadBOM_Click);
-			// 
-			// menuItem2
-			// 
-			this.menuItem2.Text = "-";
-			// 
-			// mnuSave
-			// 
-			this.mnuSave.Text = "Save Session";
-			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -93,7 +93,7 @@ namespace BOM_Checklist
 			this.KeyPreview = true;
 			this.Menu = this.mnuMain;
 			this.Name = "MainForm";
-			this.Text = "BOM Checklist";
+			this.Text = "Production Assitant";
 			this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainForm_KeyDown);
 			this.ResumeLayout(false);
 
@@ -105,7 +105,7 @@ namespace BOM_Checklist
         private System.Windows.Forms.MenuItem mnuAbout;
         private System.Windows.Forms.MenuItem mnuDetail;
         private System.Windows.Forms.TreeView treeComponents;
-        private System.Windows.Forms.MenuItem mnuLoadBOM;
+        private System.Windows.Forms.MenuItem mnuLoad;
         private System.Windows.Forms.MenuItem menuItem2;
         private System.Windows.Forms.MenuItem mnuSave;
 		private System.Windows.Forms.OpenFileDialog dlgOpen;

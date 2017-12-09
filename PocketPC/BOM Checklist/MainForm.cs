@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 
-namespace BOM_Checklist {
+namespace Production_Assistant {
 	public partial class MainForm : Form {
 		private BOM_Parser BOM;
 
@@ -46,7 +46,7 @@ namespace BOM_Checklist {
 		/**
 		 * Opens the open dialog and loads the BOM file.
 		 */
-		private void mnuLoadBOM_Click(object sender, EventArgs e) {
+		private void mnuLoad_Click(object sender, EventArgs e) {
 			dlgOpen.ShowDialog();
 			BOM.LoadXML(dlgOpen.FileName);
 		}

@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace BOM_Checklist {
+namespace Production_Assistant {
 	class BOM_Parser {
 		/**
 		 * BOM parser constructor.
