@@ -47,7 +47,7 @@ var
 begin
   tmp := '';
 
-  for i := 0 to Length(str) - 1 do
+  for i := 0 to Length(str) do
   begin
     if ((str[i] >= #65) and (str[i] <= #90)) or ((str[i] >= #97) and (str[i] <= #122)) then
        tmp := tmp + str[i];
