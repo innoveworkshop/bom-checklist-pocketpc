@@ -5,6 +5,7 @@ using System.Xml;
 
 namespace Production_Assistant {
 	public class Session {
+		public string filename;
 		public Dictionary<string, string> ProjectInfo;
 		public List<string> Categories;
 		public Dictionary<string, List<Component>> Components;

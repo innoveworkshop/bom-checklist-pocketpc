@@ -28,6 +28,7 @@ namespace Production_Assistant {
 			doc.Load(filename);
 			project = doc["project"];
 
+			session.filename = filename;
 			PopulateProjectInfo();
 			PopulateCategories();
 			PopulateComponents();

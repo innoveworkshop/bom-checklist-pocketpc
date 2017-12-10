@@ -43,6 +43,7 @@ namespace Production_Assistant
 			this.statusBar = new System.Windows.Forms.StatusBar();
 			this.dlgSave = new System.Windows.Forms.SaveFileDialog();
 			this.mnuNotes = new System.Windows.Forms.MenuItem();
+			this.mnuSaveAs = new System.Windows.Forms.MenuItem();
 			this.SuspendLayout();
 			// 
 			// mnuMain
@@ -56,6 +57,7 @@ namespace Production_Assistant
 			// 
 			this.mnuMenu.MenuItems.Add(this.mnuLoad);
 			this.mnuMenu.MenuItems.Add(this.mnuSave);
+			this.mnuMenu.MenuItems.Add(this.mnuSaveAs);
 			this.mnuMenu.MenuItems.Add(this.menuItem2);
 			this.mnuMenu.MenuItems.Add(this.mnuAbout);
 			this.mnuMenu.Text = "Menu";
@@ -118,6 +120,11 @@ namespace Production_Assistant
 			this.mnuNotes.Text = "Notes";
 			this.mnuNotes.Click += new System.EventHandler(this.mnuNotes_Click);
 			// 
+			// mnuSaveAs
+			// 
+			this.mnuSaveAs.Text = "Save Session As...";
+			this.mnuSaveAs.Click += new System.EventHandler(this.mnuSaveAs_Click);
+			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
@@ -150,6 +157,7 @@ namespace Production_Assistant
 		private System.Windows.Forms.StatusBar statusBar;
 		private System.Windows.Forms.SaveFileDialog dlgSave;
 		private System.Windows.Forms.MenuItem mnuNotes;
+		private System.Windows.Forms.MenuItem mnuSaveAs;
 
     }
 }

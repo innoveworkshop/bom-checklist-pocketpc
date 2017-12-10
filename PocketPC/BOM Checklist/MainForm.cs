@@ -152,26 +152,37 @@ namespace Production_Assistant {
 		}
 
 		/**
-		 * Save session menu item click event.
-		 */
-		private void mnuSave_Click(object sender, EventArgs e) {
-			try {
-				dlgSave.ShowDialog();
-				session.Export().Save(dlgSave.FileName);
-				statusBar.Text = "Saved session: " + dlgSave.FileName;
-			} catch (XmlException ex) {
-				if (MessageBox.Show(ex.ToString(), "Error saving session", MessageBoxButtons.RetryCancel, MessageBoxIcon.Hand, MessageBoxDefaultButton.Button1) == DialogResult.Retry) {
-					mnuSave_Click(this, new EventArgs());
-				}
-			}
-		}
-
-		/**
 		 * Show notes menu item click event.
 		 */
 		private void mnuNotes_Click(object sender, EventArgs e) {
 			NotesForm form = new NotesForm(session);
 			form.ShowDialog();
+		}
+
+		/**
+		 * Save session menu item click event.
+		 */
+		private void mnuSave_Click(object sender, EventArgs e) {
+			SaveSession(session.filename);
+		}
+
+		/**
+		 * Save session as menu item click event.
+		 */
+		private void mnuSaveAs_Click(object sender, EventArgs e) {
+			dlgSave.ShowDialog();
+			SaveSession(dlgSave.FileName);
+		}
+
+		private void SaveSession(string filename) {
+			try {
+				session.Export().Save(filename);
+				statusBar.Text = "Saved session: " + filename;
+			} catch (XmlException ex) {
+				if (MessageBox.Show(ex.ToString(), "Error saving session", MessageBoxButtons.RetryCancel, MessageBoxIcon.Hand, MessageBoxDefaultButton.Button1) == DialogResult.Retry) {
+					mnuSave_Click(this, new EventArgs());
+				}
+			}
 		}
 	}
 }
