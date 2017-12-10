@@ -31,6 +31,7 @@ namespace Production_Assistant {
 			PopulateProjectInfo();
 			PopulateCategories();
 			PopulateComponents();
+			PopulateNotes();
 		}
 
 		/**
@@ -76,6 +77,16 @@ namespace Production_Assistant {
 				session.Components.Add(groups[i].Attributes["category"].Value, components);
 			}
 
+		}
+
+		/**
+		 * Populate the session notes directory.
+		 */
+		private void PopulateNotes() {
+			XmlNodeList items = project["notes"].SelectNodes("note");
+			for (int i = 0; i < items.Count; i++) {
+				session.Notes.Add(items[i].Attributes["timestamp"].Value, items[i].InnerText);
+			}
 		}
 	}
 }

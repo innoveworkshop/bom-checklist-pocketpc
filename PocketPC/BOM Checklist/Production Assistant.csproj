@@ -61,6 +61,12 @@
     <Compile Include="ComponentDetailForm.Designer.cs">
       <DependentUpon>ComponentDetailForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="NotesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NotesForm.Designer.cs">
+      <DependentUpon>NotesForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ProjectInfoForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -80,6 +86,10 @@
     <EmbeddedResource Include="ComponentDetailForm.resx">
       <SubType>Designer</SubType>
       <DependentUpon>ComponentDetailForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NotesForm.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>NotesForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProjectInfoForm.resx">
       <SubType>Designer</SubType>

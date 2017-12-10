@@ -8,6 +8,7 @@ namespace Production_Assistant {
 		public Dictionary<string, string> ProjectInfo;
 		public List<string> Categories;
 		public Dictionary<string, List<Component>> Components;
+		public Dictionary<string, string> Notes;
 
 		/**
 		 * Session class constructor.
@@ -16,6 +17,7 @@ namespace Production_Assistant {
 			this.ProjectInfo = new Dictionary<string, string>();
 			this.Categories = new List<string>();
 			this.Components = new Dictionary<string, List<Component>>();
+			this.Notes = new Dictionary<string, string>();
 		}
 
 		/**
@@ -120,6 +122,17 @@ namespace Production_Assistant {
 
 				root.AppendChild(groupNode);
 			}
+
+			XmlNode notesNode = doc.CreateElement("notes");
+			foreach (KeyValuePair<string, string> note in Notes) {
+				XmlNode notesChild = doc.CreateElement("note");
+				XmlAttribute childAttribute = doc.CreateAttribute("timestamp");
+				childAttribute.Value = note.Key;
+				notesChild.Attributes.Append(childAttribute);
+				notesChild.InnerText = note.Value;
+				notesNode.AppendChild(notesChild);
+			}
+			root.AppendChild(notesNode);
 
 			doc.AppendChild(root);
 			return doc;

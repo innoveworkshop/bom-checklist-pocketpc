@@ -24,11 +24,10 @@ namespace Production_Assistant {
 			session = new Session();
 			SessionParser = new Session_Parser(session);
 
-			SessionParser.LoadXML("\\Storage Card\\test.xml");
+			SessionParser.LoadXML("\\Storage Card\\test_ppc.xml");
 			statusBar.Text = "Loaded session: \\Storage Card\\test.xml";
 
 			session.Export().Save("\\Storage Card\\test_ppc.xml");
-			// TODO: Try catch
 			statusBar.Text = "Exported";
 
 			UpdateComponentTree();
@@ -160,11 +159,19 @@ namespace Production_Assistant {
 				dlgSave.ShowDialog();
 				session.Export().Save(dlgSave.FileName);
 				statusBar.Text = "Saved session: " + dlgSave.FileName;
-			} catch (XmlException e) {
-				if (MessageBox.Show(e.ToString(), "Error saving session", MessageBoxButtons.RetryCancel, MessageBoxIcon.Hand, MessageBoxDefaultButton.Button1) == DialogResult.Retry) {
+			} catch (XmlException ex) {
+				if (MessageBox.Show(ex.ToString(), "Error saving session", MessageBoxButtons.RetryCancel, MessageBoxIcon.Hand, MessageBoxDefaultButton.Button1) == DialogResult.Retry) {
 					mnuSave_Click(this, new EventArgs());
 				}
 			}
+		}
+
+		/**
+		 * Show notes menu item click event.
+		 */
+		private void mnuNotes_Click(object sender, EventArgs e) {
+			NotesForm form = new NotesForm(session);
+			form.ShowDialog();
 		}
 	}
 }
