@@ -5,6 +5,8 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using System.IO;
+using System.Xml;
 
 namespace Production_Assistant {
 	public partial class MainForm : Form {
@@ -147,6 +149,21 @@ namespace Production_Assistant {
 				UpdateComponentTree();
 			} else {
 				MessageBox.Show("Select a component, not a category", "User Failure", MessageBoxButtons.OK, MessageBoxIcon.Exclamation, MessageBoxDefaultButton.Button1);
+			}
+		}
+
+		/**
+		 * Save session menu item click event.
+		 */
+		private void mnuSave_Click(object sender, EventArgs e) {
+			try {
+				dlgSave.ShowDialog();
+				session.Export().Save(dlgSave.FileName);
+				statusBar.Text = "Saved session: " + dlgSave.FileName;
+			} catch (XmlException e) {
+				if (MessageBox.Show(e.ToString(), "Error saving session", MessageBoxButtons.RetryCancel, MessageBoxIcon.Hand, MessageBoxDefaultButton.Button1) == DialogResult.Retry) {
+					mnuSave_Click(this, new EventArgs());
+				}
 			}
 		}
 	}

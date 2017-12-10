@@ -41,6 +41,7 @@ namespace Production_Assistant
 			this.treeComponents = new System.Windows.Forms.TreeView();
 			this.dlgOpen = new System.Windows.Forms.OpenFileDialog();
 			this.statusBar = new System.Windows.Forms.StatusBar();
+			this.dlgSave = new System.Windows.Forms.SaveFileDialog();
 			this.SuspendLayout();
 			// 
 			// mnuMain
@@ -65,6 +66,7 @@ namespace Production_Assistant
 			// mnuSave
 			// 
 			this.mnuSave.Text = "Save Session";
+			this.mnuSave.Click += new System.EventHandler(this.mnuSave_Click);
 			// 
 			// menuItem2
 			// 
@@ -95,11 +97,19 @@ namespace Production_Assistant
 			this.treeComponents.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.treeComponents_AfterCheck);
 			this.treeComponents.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeComponents_AfterSelect);
 			// 
+			// dlgOpen
+			// 
+			this.dlgOpen.Filter = "Session|*.xml|All files|*.*";
+			// 
 			// statusBar
 			// 
 			this.statusBar.Location = new System.Drawing.Point(0, 246);
 			this.statusBar.Name = "statusBar";
 			this.statusBar.Size = new System.Drawing.Size(240, 22);
+			// 
+			// dlgSave
+			// 
+			this.dlgSave.Filter = "Session|*.xml|All files|*.*";
 			// 
 			// MainForm
 			// 
@@ -131,6 +141,7 @@ namespace Production_Assistant
 		private System.Windows.Forms.OpenFileDialog dlgOpen;
 		private System.Windows.Forms.MenuItem mnuInfo;
 		private System.Windows.Forms.StatusBar statusBar;
+		private System.Windows.Forms.SaveFileDialog dlgSave;
 
     }
 }

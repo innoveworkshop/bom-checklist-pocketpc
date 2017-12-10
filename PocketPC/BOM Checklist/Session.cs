@@ -76,6 +76,51 @@ namespace Production_Assistant {
 			}
 			root.AppendChild(categoriesNode);
 
+			// Component groups.
+			foreach (KeyValuePair<string, List<Component>> group in Components) {
+				XmlNode groupNode = doc.CreateElement("group");
+				XmlAttribute groupAttribute = doc.CreateAttribute("category");
+				groupAttribute.Value = group.Key;
+				groupNode.Attributes.Append(groupAttribute);
+
+				for (int i = 0; i < group.Value.Count; i++) {
+					Component component = group.Value[i];
+
+					XmlNode componentNode = doc.CreateElement("component");
+					XmlAttribute componentAttribute = doc.CreateAttribute("id");
+					componentAttribute.Value = component.ID.ToString();
+					componentNode.Attributes.Append(componentAttribute);
+					componentAttribute = doc.CreateAttribute("checked");
+					componentAttribute.Value = XmlConvert.ToString(component.Checked);
+					componentNode.Attributes.Append(componentAttribute);
+
+					XmlNode componentChild = doc.CreateElement("quantity");
+					componentChild.InnerText = component.Quantity.ToString();
+					componentNode.AppendChild(componentChild);
+					componentChild = doc.CreateElement("value");
+					componentChild.InnerText = component.Value;
+					componentNode.AppendChild(componentChild);
+					componentChild = doc.CreateElement("name");
+					componentChild.InnerText = component.Name;
+					componentNode.AppendChild(componentChild);
+
+					componentChild = doc.CreateElement("references");
+					componentAttribute = doc.CreateAttribute("text");
+					componentAttribute.Value = component.RefDesString();
+					componentChild.Attributes.Append(componentAttribute);
+					for (int j = 0; j < component.RefDes.Count; j++) {
+						XmlNode refdesNode = doc.CreateElement("refdes");
+						refdesNode.InnerText = component.RefDes[j];
+						componentChild.AppendChild(refdesNode);
+					}
+					componentNode.AppendChild(componentChild);
+
+					groupNode.AppendChild(componentNode);
+				}
+
+				root.AppendChild(groupNode);
+			}
+
 			doc.AppendChild(root);
 			return doc;
 		}
