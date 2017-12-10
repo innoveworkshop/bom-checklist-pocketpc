@@ -55,6 +55,8 @@ namespace Production_Assistant {
 			// 
 			// cmbNotes
 			// 
+			this.cmbNotes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+						| System.Windows.Forms.AnchorStyles.Right)));
 			this.cmbNotes.Location = new System.Drawing.Point(3, 3);
 			this.cmbNotes.Name = "cmbNotes";
 			this.cmbNotes.Size = new System.Drawing.Size(234, 22);
@@ -65,6 +67,9 @@ namespace Production_Assistant {
 			// 
 			this.txtNote.AcceptsReturn = true;
 			this.txtNote.AcceptsTab = true;
+			this.txtNote.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+						| System.Windows.Forms.AnchorStyles.Left)
+						| System.Windows.Forms.AnchorStyles.Right)));
 			this.txtNote.Location = new System.Drawing.Point(3, 31);
 			this.txtNote.Multiline = true;
 			this.txtNote.Name = "txtNote";

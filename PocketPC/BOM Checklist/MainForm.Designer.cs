@@ -92,11 +92,13 @@ namespace Production_Assistant
 			// 
 			// treeComponents
 			// 
+			this.treeComponents.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+						| System.Windows.Forms.AnchorStyles.Left)
+						| System.Windows.Forms.AnchorStyles.Right)));
 			this.treeComponents.CheckBoxes = true;
-			this.treeComponents.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.treeComponents.Location = new System.Drawing.Point(0, 0);
+			this.treeComponents.Location = new System.Drawing.Point(3, 3);
 			this.treeComponents.Name = "treeComponents";
-			this.treeComponents.Size = new System.Drawing.Size(240, 268);
+			this.treeComponents.Size = new System.Drawing.Size(234, 237);
 			this.treeComponents.TabIndex = 0;
 			this.treeComponents.AfterCheck += new System.Windows.Forms.TreeViewEventHandler(this.treeComponents_AfterCheck);
 			this.treeComponents.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeComponents_AfterSelect);

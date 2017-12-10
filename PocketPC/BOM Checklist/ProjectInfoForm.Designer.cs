@@ -26,12 +26,12 @@ namespace Production_Assistant {
 		private void InitializeComponent() {
 			this.mnuMain = new System.Windows.Forms.MainMenu();
 			this.mnuAdd = new System.Windows.Forms.MenuItem();
+			this.mnuDelete = new System.Windows.Forms.MenuItem();
 			this.mnuSave = new System.Windows.Forms.MenuItem();
 			this.lstNames = new System.Windows.Forms.ListBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
 			this.txtValue = new System.Windows.Forms.TextBox();
-			this.mnuDelete = new System.Windows.Forms.MenuItem();
 			this.txtName = new System.Windows.Forms.TextBox();
 			this.SuspendLayout();
 			// 
@@ -45,6 +45,11 @@ namespace Production_Assistant {
 			// 
 			this.mnuAdd.Text = "Add";
 			this.mnuAdd.Click += new System.EventHandler(this.mnuAdd_Click);
+			// 
+			// mnuDelete
+			// 
+			this.mnuDelete.Text = "Delete";
+			this.mnuDelete.Click += new System.EventHandler(this.mnuDelete_Click);
 			// 
 			// mnuSave
 			// 
@@ -64,16 +69,16 @@ namespace Production_Assistant {
 			// 
 			// label1
 			// 
-			this.label1.Location = new System.Drawing.Point(3, 177);
+			this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.label1.Location = new System.Drawing.Point(3, 184);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(100, 15);
 			this.label1.Text = "Name";
 			// 
 			// label2
 			// 
-			this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-						| System.Windows.Forms.AnchorStyles.Right)));
-			this.label2.Location = new System.Drawing.Point(3, 219);
+			this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.label2.Location = new System.Drawing.Point(3, 226);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(100, 15);
 			this.label2.Text = "Value";
@@ -81,27 +86,20 @@ namespace Production_Assistant {
 			// txtValue
 			// 
 			this.txtValue.AcceptsReturn = true;
-			this.txtValue.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-						| System.Windows.Forms.AnchorStyles.Left)
+			this.txtValue.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
 						| System.Windows.Forms.AnchorStyles.Right)));
-			this.txtValue.Location = new System.Drawing.Point(3, 237);
+			this.txtValue.Location = new System.Drawing.Point(3, 244);
 			this.txtValue.Name = "txtValue";
 			this.txtValue.Size = new System.Drawing.Size(234, 21);
 			this.txtValue.TabIndex = 4;
 			this.txtValue.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtValue_KeyDown);
 			// 
-			// mnuDelete
-			// 
-			this.mnuDelete.Text = "Delete";
-			this.mnuDelete.Click += new System.EventHandler(this.mnuDelete_Click);
-			// 
 			// txtName
 			// 
 			this.txtName.AcceptsReturn = true;
-			this.txtName.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-						| System.Windows.Forms.AnchorStyles.Left)
+			this.txtName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
 						| System.Windows.Forms.AnchorStyles.Right)));
-			this.txtName.Location = new System.Drawing.Point(3, 195);
+			this.txtName.Location = new System.Drawing.Point(3, 202);
 			this.txtName.Name = "txtName";
 			this.txtName.Size = new System.Drawing.Size(234, 21);
 			this.txtName.TabIndex = 7;

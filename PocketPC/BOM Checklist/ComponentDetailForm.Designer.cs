@@ -53,6 +53,8 @@ namespace Production_Assistant {
 			// 
 			// txtValue
 			// 
+			this.txtValue.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+						| System.Windows.Forms.AnchorStyles.Right)));
 			this.txtValue.Location = new System.Drawing.Point(82, 21);
 			this.txtValue.Name = "txtValue";
 			this.txtValue.Size = new System.Drawing.Size(155, 21);
@@ -67,6 +69,8 @@ namespace Production_Assistant {
 			// 
 			// txtName
 			// 
+			this.txtName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+						| System.Windows.Forms.AnchorStyles.Right)));
 			this.txtName.Location = new System.Drawing.Point(3, 64);
 			this.txtName.Name = "txtName";
 			this.txtName.Size = new System.Drawing.Size(234, 21);
@@ -88,6 +92,8 @@ namespace Production_Assistant {
 			// 
 			// cmbCategory
 			// 
+			this.cmbCategory.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+						| System.Windows.Forms.AnchorStyles.Right)));
 			this.cmbCategory.Location = new System.Drawing.Point(3, 106);
 			this.cmbCategory.Name = "cmbCategory";
 			this.cmbCategory.Size = new System.Drawing.Size(234, 22);
@@ -102,6 +108,9 @@ namespace Production_Assistant {
 			// 
 			// lstRefDes
 			// 
+			this.lstRefDes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+						| System.Windows.Forms.AnchorStyles.Left)
+						| System.Windows.Forms.AnchorStyles.Right)));
 			this.lstRefDes.Location = new System.Drawing.Point(3, 149);
 			this.lstRefDes.Name = "lstRefDes";
 			this.lstRefDes.Size = new System.Drawing.Size(234, 114);
