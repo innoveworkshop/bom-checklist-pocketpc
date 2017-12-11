@@ -87,12 +87,6 @@ end;
 
 procedure TMainForm.FormCreate(Sender: TObject);
 begin
-  BOM := TBOMParser.Create('../test.csv');
-  BOM.ParseFile;
-
-  XML := TXMLHelper.Create(BOM);
-
-  PopulateComponentTree;
   SetupPrinter('POS58', 58, 32);
 end;
 
@@ -113,6 +107,7 @@ begin
   begin
     BOM := TBOMParser.Create(dlgOpen.FileName);
     BOM.ParseFile;
+    XML := TXMLHelper.Create(BOM);
 
     PopulateComponentTree;
   end;

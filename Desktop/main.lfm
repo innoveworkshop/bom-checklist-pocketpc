@@ -271,10 +271,10 @@ object MainForm: TMainForm
         KeyOptions = [keyEdit, keyAdd, keyDelete]
         Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRowSizing, goColSizing, goRowMoving, goEditing, goAutoAddRows, goAlwaysShowEditor, goThumbTracking, goSmoothScroll]
         Strings.Strings = (
-          'Name=Testing Project'
-          'Quantity=10'
-          'Lot=123'
-          'Serial #=456'
+          'Name='
+          'Quantity='
+          'Lot='
+          'Serial #='
         )
         TitleCaptions.Strings = (
           'Name'
