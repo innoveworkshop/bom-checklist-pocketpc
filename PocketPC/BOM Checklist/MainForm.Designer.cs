@@ -34,16 +34,16 @@ namespace Production_Assistant
 			this.mnuMenu = new System.Windows.Forms.MenuItem();
 			this.mnuLoad = new System.Windows.Forms.MenuItem();
 			this.mnuSave = new System.Windows.Forms.MenuItem();
+			this.mnuSaveAs = new System.Windows.Forms.MenuItem();
 			this.menuItem2 = new System.Windows.Forms.MenuItem();
 			this.mnuAbout = new System.Windows.Forms.MenuItem();
 			this.mnuInfo = new System.Windows.Forms.MenuItem();
 			this.mnuDetail = new System.Windows.Forms.MenuItem();
+			this.mnuNotes = new System.Windows.Forms.MenuItem();
 			this.treeComponents = new System.Windows.Forms.TreeView();
 			this.dlgOpen = new System.Windows.Forms.OpenFileDialog();
 			this.statusBar = new System.Windows.Forms.StatusBar();
 			this.dlgSave = new System.Windows.Forms.SaveFileDialog();
-			this.mnuNotes = new System.Windows.Forms.MenuItem();
-			this.mnuSaveAs = new System.Windows.Forms.MenuItem();
 			this.SuspendLayout();
 			// 
 			// mnuMain
@@ -72,6 +72,11 @@ namespace Production_Assistant
 			this.mnuSave.Text = "Save Session";
 			this.mnuSave.Click += new System.EventHandler(this.mnuSave_Click);
 			// 
+			// mnuSaveAs
+			// 
+			this.mnuSaveAs.Text = "Save Session As...";
+			this.mnuSaveAs.Click += new System.EventHandler(this.mnuSaveAs_Click);
+			// 
 			// menuItem2
 			// 
 			this.menuItem2.Text = "-";
@@ -90,6 +95,11 @@ namespace Production_Assistant
 			this.mnuDetail.Text = "Detail";
 			this.mnuDetail.Click += new System.EventHandler(this.mnuDetail_Click);
 			// 
+			// mnuNotes
+			// 
+			this.mnuNotes.Text = "Notes";
+			this.mnuNotes.Click += new System.EventHandler(this.mnuNotes_Click);
+			// 
 			// treeComponents
 			// 
 			this.treeComponents.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
@@ -105,7 +115,7 @@ namespace Production_Assistant
 			// 
 			// dlgOpen
 			// 
-			this.dlgOpen.Filter = "Session|*.xml|All files|*.*";
+			this.dlgOpen.Filter = "Session (*.xml)|*.xml|All files (*.*)|*.*";
 			// 
 			// statusBar
 			// 
@@ -115,17 +125,7 @@ namespace Production_Assistant
 			// 
 			// dlgSave
 			// 
-			this.dlgSave.Filter = "Session|*.xml|All files|*.*";
-			// 
-			// mnuNotes
-			// 
-			this.mnuNotes.Text = "Notes";
-			this.mnuNotes.Click += new System.EventHandler(this.mnuNotes_Click);
-			// 
-			// mnuSaveAs
-			// 
-			this.mnuSaveAs.Text = "Save Session As...";
-			this.mnuSaveAs.Click += new System.EventHandler(this.mnuSaveAs_Click);
+			this.dlgSave.Filter = "Session (*.xml)|*.xml|All files (*.*)|*.*";
 			// 
 			// MainForm
 			// 

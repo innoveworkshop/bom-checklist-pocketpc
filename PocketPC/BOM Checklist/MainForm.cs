@@ -24,13 +24,13 @@ namespace Production_Assistant {
 			session = new Session();
 			SessionParser = new Session_Parser(session);
 
-			SessionParser.LoadXML("\\Storage Card\\test_ppc.xml");
+			/*SessionParser.LoadXML("\\Storage Card\\test_ppc.xml");
 			statusBar.Text = "Loaded session: \\Storage Card\\test.xml";
 
 			session.Export().Save("\\Storage Card\\test_ppc.xml");
 			statusBar.Text = "Exported";
 
-			UpdateComponentTree();
+			UpdateComponentTree();*/
 		}
 
 		/**
