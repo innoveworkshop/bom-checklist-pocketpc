@@ -36,3 +36,8 @@ This is literally the CSV exported from DipTrace, but with a new column added `C
 </p>
 
 After you've imported the BOM and set all the parameters in the application, you can now just save the session as a XML file and use that later.
+
+
+## License
+
+This project is licensed under the **MIT License**.
