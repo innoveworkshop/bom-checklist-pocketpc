@@ -1,17 +1,6 @@
-# Lazarus files.
-*.o
-*.ppu
-*.bak
-*.tpu
-*.$$$
-*.exe
-*.lps
-Desktop/backup/
-Desktop/lib/
-
 # Visual Studio files.
-PocketPC/BOM Checklist/obj
-PocketPC/BOM Checklist/bin
+obj/
+bin/
 
 # Test files.
 test.csv
@@ -21,3 +10,4 @@ test_ppc.xml
 # Misc.
 *.pdnBak
 .DS_Store
+
