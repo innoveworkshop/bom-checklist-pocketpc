@@ -1,6 +1,4 @@
-<p align="center">
-	<img src="https://i.imgur.com/tQE1cdd.png" alt="Applicaiton Icon" />
-</p>
+![Application Icon](/Screenshots/AppIcon.png?raw=true)
 
 # Production Assistant
 
