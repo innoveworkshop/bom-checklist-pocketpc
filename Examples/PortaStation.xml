@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project>
+  <info>
+    <name text="Name">PortaStation</name>
+    <quantity text="Quantity">1</quantity>
+    <lot text="Lot">1</lot>
+    <serial text="Serial #">0001</serial>
+  </info>
+  <categories>
+    <category>Connector</category>
+    <category>Capacitor</category>
+    <category>Diode</category>
+    <category>Transistor</category>
+    <category>Resistor</category>
+    <category>Potentiometer</category>
+    <category>Voltage Regulator</category>
+    <category>Operational Amplifier</category>
+    <category>Microcontroller</category>
+    <category>Memory</category>
+    <category>Case</category>
+    <category>Rotary Encoder</category>
+    <category>Display</category>
+    <category>Switch</category>
+    <category>Accessory</category>
+    <category>Wire</category>
+    <category>PCB</category>
+  </categories>
+  <group category="Connector">
+    <component id="1" checked="false">
+      <quantity>1</quantity>
+      <value></value>
+      <name>KK-254-4</name>
+      <references text="24V">
+        <refdes>24V</refdes>
+      </references>
+    </component>
+    <component id="8" checked="false">
+      <quantity>2</quantity>
+      <value></value>
+      <name>KK-254-5</name>
+      <references text="FP_IRON, FP_RE">
+        <refdes>FP_IRON</refdes>
+        <refdes>FP_RE</refdes>
+      </references>
+    </component>
+    <component id="9" checked="false">
+      <quantity>1</quantity>
+      <value></value>
+      <name>KK-254-8</name>
+      <references text="FP_LCD">
+        <refdes>FP_LCD</refdes>
+      </references>
+    </component>
+    <component id="10" checked="false">
+      <quantity>1</quantity>
+      <value></value>
+      <name>HDR-1x4</name>
+      <references text="ICSP">
+        <refdes>ICSP</refdes>
+      </references>
+    </component>
+    <component id="31" checked="false">
+      <quantity>1</quantity>
+      <value></value>
+      <name>JL33054-5P </name>
+      <references text="IRON">
+        <refdes>IRON</refdes>
+      </references>
+    </component>
+    <component id="32" checked="false">
+      <quantity>1</quantity>
+      <value></value>
+      <name>P4-METAL</name>
+      <references text="POWER">
+        <refdes>POWER</refdes>
+      </references>
+    </component>
+    <component id="42" checked="false">
+      <quantity>17</quantity>
+      <value></value>
+      <name>KK-254-FEM-PIN</name>
+      <references text="FEM_PIN">
+        <refdes>FEM_PIN</refdes>
+      </references>
+    </component>
+    <component id="43" checked="false">
+      <quantity>1</quantity>
+      <value></value>
+      <name>KK-254-4-HOUSING</name>
+      <references text="24V_FEM">
+        <refdes>24V_FEM</refdes>
+      </references>
+    </component>
+    <component id="44" checked="false">
+      <quantity>2</quantity>
+      <value></value>
+      <name>KK-254-5-HOUSING</name>
+      <references text="FP_IRON_FEM, FP_RE_FEM">
+        <refdes>FP_IRON_FEM</refdes>
+        <refdes>FP_RE_FEM</refdes>
+      </references>
+    </component>
+    <component id="45" checked="false">
+      <quantity>1</quantity>
+      <value></value>
+      <name>KK-254-8-HOUSING</name>
+      <references text="FP_LCD_FEM">
+        <refdes>FP_LCD_FEM</refdes>
+      </references>
+    </component>
+  </group>
+  <group category="Capacitor">
+    <component id="2" checked="false">
+      <quantity>3</quantity>
+      <value>470u 35V</value>
+      <name>CAP300RP</name>
+      <references text="C1, C2, C8">
+        <refdes>C1</refdes>
+        <refdes>C2</refdes>
+        <refdes>C8</refdes>
+      </references>
+    </component>
+    <component id="3" checked="false">
+      <quantity>5</quantity>
+      <value>100n</value>
+      <name>CAP200</name>
+      <references text="C4, C5, C6, C7, C11">
+        <refdes>C4</refdes>
+        <refdes>C5</refdes>
+        <refdes>C6</refdes>
+        <refdes>C7</refdes>
+        <refdes>C11</refdes>
+      </references>
+    </component>
+    <component id="4" checked="false">
+      <quantity>2</quantity>
+      <value>1u</value>
+      <name>CAP100RP</name>
+      <references text="C9, C10">
+        <refdes>C9</refdes>
+        <refdes>C10</refdes>
+      </references>
+    </component>
+    <component id="5" checked="false">
+      <quantity>2</quantity>
+      <value>10n</value>
+      <name>CAP200</name>
+      <references text="C12, C13">
+        <refdes>C12</refdes>
+        <refdes>C13</refdes>
+      </references>
+    </component>
+    <component id="6" checked="false">
+      <quantity>1</quantity>
+      <value>2n2</value>
+      <name>CAP200</name>
+      <references text="C14">
+        <refdes>C14</refdes>
+      </references>
+    </component>
+  </group>
+  <group category="Diode">
+    <component id="7" checked="false">
+      <quantity>1</quantity>
+      <value>3.3V</value>
+      <name>1N5231</name>
+      <references text="D1">
+        <refdes>D1</refdes>
+      </references>
+    </component>
+  </group>
+  <group category="Transistor">
+    <component id="11" checked="false">
+      <quantity>2</quantity>
+      <value></value>
+      <name>BC547A</name>
+      <references text="Q1, Q4">
+        <refdes>Q1</refdes>
+        <refdes>Q4</refdes>
+      </references>
+    </component>
+    <component id="12" checked="false">
+      <quantity>1</quantity>
+      <value></value>
+      <name>FQP33N10</name>
+      <references text="Q2">
+        <refdes>Q2</refdes>
+      </references>
+    </component>
+    <component id="13" checked="false">
+      <quantity>1</quantity>
+      <value></value>
+      <name>BC557</name>
+      <references text="Q3">
+        <refdes>Q3</refdes>
+      </references>
+    </component>
+  </group>
+  <group category="Resistor">
+    <component id="14" checked="false">
+      <quantity>8</quantity>
+      <value>10k</value>
+      <name>RES400</name>
+      <references text="R1, R5, R8, R9, R11, R12, R15, R24">
+        <refdes>R1</refdes>
+        <refdes>R5</refdes>
+        <refdes>R8</refdes>
+        <refdes>R9</refdes>
+        <refdes>R11</refdes>
+        <refdes>R12</refdes>
+        <refdes>R15</refdes>
+        <refdes>R24</refdes>
+      </references>
+    </component>
+    <component id="15" checked="false">
+      <quantity>1</quantity>
+      <value>330</value>
+      <name>RES400</name>
+      <references text="R2">
+        <refdes>R2</refdes>
+      </references>
+    </component>
+    <component id="16" checked="false">
+      <quantity>4</quantity>
+      <value>4.7k</value>
+      <name>RES400</name>
+      <references text="R3, R4, R18, R19">
+        <refdes>R3</refdes>
+        <refdes>R4</refdes>
+        <refdes>R18</refdes>
+        <refdes>R19</refdes>
+      </references>
+    </component>
+    <component id="17" checked="false">
+      <quantity>5</quantity>
+      <value>1k</value>
+      <name>RES400</name>
+      <references text="R6, R7, R13, R22, R23">
+        <refdes>R6</refdes>
+        <refdes>R7</refdes>
+        <refdes>R13</refdes>
+        <refdes>R22</refdes>
+        <refdes>R23</refdes>
+      </references>
+    </component>
+    <component id="18" checked="false">
+      <quantity>2</quantity>
+      <value>100k</value>
+      <name>RES400</name>
+      <references text="R10, R21">
+        <refdes>R10</refdes>
+        <refdes>R21</refdes>
+      </references>
+    </component>
+    <component id="19" checked="false">
+      <quantity>1</quantity>
+      <value>560R 1W</value>
+      <name>RES700</name>
+      <references text="R14">
+        <refdes>R14</refdes>
+      </references>
+    </component>
+    <component id="21" checked="false">
+      <quantity>1</quantity>
+      <value>0R</value>
+      <name>RES400</name>
+      <references text="R17">
+        <refdes>R17</refdes>
+      </references>
+    </component>
+    <component id="22" checked="false">
+      <quantity>1</quantity>
+      <value>47k</value>
+      <name>RES400</name>
+      <references text="R20">
+        <refdes>R20</refdes>
+      </references>
+    </component>
+  </group>
+  <group category="Potentiometer">
+    <component id="20" checked="false">
+      <quantity>1</quantity>
+      <value>100k</value>
+      <name>3362U</name>
+      <references text="R16">
+        <refdes>R16</refdes>
+      </references>
+    </component>
+  </group>
+  <group category="Voltage Regulator">
+    <component id="23" checked="false">
+      <quantity>1</quantity>
+      <value></value>
+      <name>LM78L05ACZ</name>
+      <references text="U1">
+        <refdes>U1</refdes>
+      </references>
+    </component>
+    <component id="24" checked="false">
+      <quantity>1</quantity>
+      <value></value>
+      <name>LM78L33ACZ</name>
+      <references text="U2">
+        <refdes>U2</refdes>
+      </references>
+    </component>
+  </group>
+  <group category="Operational Amplifier">
+    <component id="25" checked="false">
+      <quantity>1</quantity>
+      <value></value>
+      <name>LM324N</name>
+      <references text="U3">
+        <refdes>U3</refdes>
+      </references>
+    </component>
+  </group>
+  <group category="Microcontroller">
+    <component id="26" checked="false">
+      <quantity>1</quantity>
+      <value></value>
+      <name>MSP430G2553</name>
+      <references text="U4">
+        <refdes>U4</refdes>
+      </references>
+    </component>
+  </group>
+  <group category="Memory">
+    <component id="27" checked="false">
+      <quantity>1</quantity>
+      <value></value>
+      <name>24LC256P</name>
+      <references text="U5">
+        <refdes>U5</refdes>
+      </references>
+    </component>
+  </group>
+  <group category="Case">
+    <component id="28" checked="false">
+      <quantity>1</quantity>
+      <value></value>
+      <name>1455N1202BK</name>
+      <references text="CASE">
+        <refdes>CASE</refdes>
+      </references>
+    </component>
+  </group>
+  <group category="Rotary Encoder">
+    <component id="29" checked="false">
+      <quantity>1</quantity>
+      <value></value>
+      <name>PEC11R-4215F-S0024 </name>
+      <references text="RE">
+        <refdes>RE</refdes>
+      </references>
+    </component>
+  </group>
+  <group category="Display">
+    <component id="30" checked="false">
+      <quantity>1</quantity>
+      <value></value>
+      <name>MOD-Nokia-5110</name>
+      <references text="LCD">
+        <refdes>LCD</refdes>
+      </references>
+    </component>
+  </group>
+  <group category="Switch">
+    <component id="33" checked="false">
+      <quantity>1</quantity>
+      <value></value>
+      <name>KCD1-101 </name>
+      <references text="SW_POWER">
+        <refdes>SW_POWER</refdes>
+      </references>
+    </component>
+  </group>
+  <group category="Accessory">
+    <component id="34" checked="false">
+      <quantity>1</quantity>
+      <value></value>
+      <name>HAKKO-907 </name>
+      <references text="SOLDERING_IRON">
+        <refdes>SOLDERING_IRON</refdes>
+      </references>
+    </component>
+  </group>
+  <group category="Wire">
+    <component id="35" checked="false">
+      <quantity>1</quantity>
+      <value></value>
+      <name>HOOKUP-WIRE-0.2MM-RED</name>
+      <references text="RED_WIRE">
+        <refdes>RED_WIRE</refdes>
+      </references>
+    </component>
+    <component id="36" checked="false">
+      <quantity>1</quantity>
+      <value></value>
+      <name>HOOKUP-WIRE-0.2MM-BLACK</name>
+      <references text="BLACK_WIRE">
+        <refdes>BLACK_WIRE</refdes>
+      </references>
+    </component>
+    <component id="37" checked="false">
+      <quantity>1</quantity>
+      <value></value>
+      <name>HOOKUP-WIRE-0.2MM-GREEN</name>
+      <references text="GREEN_WIRE">
+        <refdes>GREEN_WIRE</refdes>
+      </references>
+    </component>
+    <component id="38" checked="false">
+      <quantity>1</quantity>
+      <value></value>
+      <name>HOOKUP-WIRE-0.2MM-BLUE</name>
+      <references text="BLUE_WIRE">
+        <refdes>BLUE_WIRE</refdes>
+      </references>
+    </component>
+  </group>
+  <group category="PCB">
+    <component id="39" checked="false">
+      <quantity>1</quantity>
+      <value></value>
+      <name>MAIN-PCB</name>
+      <references text="MAIN_PCB">
+        <refdes>MAIN_PCB</refdes>
+      </references>
+    </component>
+    <component id="40" checked="false">
+      <quantity>1</quantity>
+      <value></value>
+      <name>BACK-PCB</name>
+      <references text="BACK_PANEL">
+        <refdes>BACK_PANEL</refdes>
+      </references>
+    </component>
+    <component id="41" checked="false">
+      <quantity>1</quantity>
+      <value></value>
+      <name>FRONT-PCB</name>
+      <references text="FRONT_PANEL">
+        <refdes>FRONT_PANEL</refdes>
+      </references>
+    </component>
+  </group>
+</project>
