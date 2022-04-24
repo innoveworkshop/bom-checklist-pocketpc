@@ -84,6 +84,9 @@ namespace Production_Assistant {
 		 * Populate the session notes directory.
 		 */
 		private void PopulateNotes() {
+			if (project["notes"] == null)
+				return;
+
 			XmlNodeList items = project["notes"].SelectNodes("note");
 			for (int i = 0; i < items.Count; i++) {
 				session.Notes.Add(items[i].Attributes["timestamp"].Value, items[i].InnerText);
